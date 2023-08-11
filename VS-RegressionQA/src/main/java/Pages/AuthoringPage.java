@@ -121,6 +121,15 @@ public class AuthoringPage extends HelperFunctions {
 	
 	@FindBy(xpath="//input[@placeholder='Page path']")
 	private static List<WebElement> pagePath;
+	
+	@FindBy(xpath="//img[@src='/content/dam/valuestore/us/en/thumbnails/topic-landing-page-thumbnail.png']")
+	private WebElement topicTemplate;
+	
+	@FindBy(xpath="//img[@src='/content/dam/valuestore/us/en/thumbnails/Content.png']")
+	private WebElement contentTemplate;
+	
+	@FindBy(xpath="//img[@src='/content/dam/valuestore/us/en/thumbnails/Ghost.png']")
+	private WebElement ghostTemplate;
  
     
 	ReadXLSdata read1=new ReadXLSdata();
@@ -145,8 +154,8 @@ public class AuthoringPage extends HelperFunctions {
 	
 	public void setGettingReport() throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 32));
-	    HelperFunctions.waitForPageToLoad(15);
+	    //Driver.getDriver().get(read1.getCellData("VALUE", 32));
+	   // HelperFunctions.waitForPageToLoad(15);
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.visibilityOf(pageReport));
 	    pageReport.click();
@@ -172,8 +181,8 @@ public class AuthoringPage extends HelperFunctions {
 	}
 	public void setEditQuickLinks() throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 33));
-	    HelperFunctions.waitForPageToLoad(15);
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 33));
+	   // HelperFunctions.waitForPageToLoad(15);
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.visibilityOf(headerEdit));
 	    headerEdit.click();
@@ -222,19 +231,19 @@ public class AuthoringPage extends HelperFunctions {
 	}
 	public void setEditQuickLinks2() throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 33));
-	    HelperFunctions.waitForPageToLoad(15);
+	    //Driver.getDriver().get(read1.getCellData("VALUE", 33));
+	  //  HelperFunctions.waitForPageToLoad(15);
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.visibilityOf(headerEdit));
 	    headerEdit.click();
-	    HelperFunctions.staticWait(2);
+	    HelperFunctions.staticWait(3);
 	    configure.click();
 	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait1.until(ExpectedConditions.visibilityOf(quickDescField1));
 	    quickDescField1.click();
 	    HelperFunctions.staticWait(2);
 	    quickDescField1.clear();
-	    HelperFunctions.staticWait(2);
+	    HelperFunctions.staticWait(3);
 	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 	    js.executeScript("arguments[0].click();", quickDescField2);
 	    HelperFunctions.staticWait(2);
@@ -245,8 +254,8 @@ public class AuthoringPage extends HelperFunctions {
 	}
 	public void setContentTemplateMexico() throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 34));
-	    HelperFunctions.waitForPageToLoad(15);
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 34));
+	   // HelperFunctions.waitForPageToLoad(15);
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.visibilityOf(contentPageTemplate));
 	    contentPageTemplate.click();
@@ -259,8 +268,8 @@ public class AuthoringPage extends HelperFunctions {
 	}
 	public void setGhostTemplateMexico() throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 34));
-	    HelperFunctions.waitForPageToLoad(15);
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 34));
+	   // HelperFunctions.waitForPageToLoad(15);
 	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 15);
 	    wait2.until(ExpectedConditions.visibilityOf(ghostPageTemplate));
 	    ghostPageTemplate.click();
@@ -273,8 +282,8 @@ public class AuthoringPage extends HelperFunctions {
 	}
 	public void setMightLikeEdit() throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 39));
-	    HelperFunctions.waitForPageToLoad(15);
+	    //Driver.getDriver().get(read1.getCellData("VALUE", 39));
+	   // HelperFunctions.waitForPageToLoad(15);
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.elementToBeClickable(editButton));
 	    editButton.click();
@@ -297,8 +306,8 @@ public class AuthoringPage extends HelperFunctions {
 	
 	public void setConfigure4Articles() throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 39));
-	    HelperFunctions.waitForPageToLoad(15);
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 39));
+	   //HelperFunctions.waitForPageToLoad(15);
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.elementToBeClickable(editButton));
 	    editButton.click();
@@ -327,6 +336,48 @@ public class AuthoringPage extends HelperFunctions {
             System.out.println("The number of visible and interactable elements is: " + elementCount);
         }
         HelperFunctions.staticWait(3);
+	}
+	public void setTopicTemplateGlobal() throws Exception {
+		read1.setExcelFile("./testdata.xlsx", "QA");
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 34));
+	   // HelperFunctions.waitForPageToLoad(15);
+	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+	    wait.until(ExpectedConditions.visibilityOf(topicTemplate));
+	    topicTemplate.click();
+	    HelperFunctions.staticWait(2);
+	    nextButton.click();
+	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 15);
+	    wait1.until(ExpectedConditions.visibilityOf(titleArea));
+	    Assert.assertTrue(titleArea.isDisplayed());
+	    HelperFunctions.staticWait(3);
+	    
+	}
+	public void setContentTemplateGlobal() throws Exception {
+		read1.setExcelFile("./testdata.xlsx", "QA");
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 34));
+	   // HelperFunctions.waitForPageToLoad(15);
+	
+	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait2.until(ExpectedConditions.visibilityOf(contentTemplate));
+	    contentTemplate.click();
+	    nextButton.click();
+	    WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 15);
+	    wait3.until(ExpectedConditions.visibilityOf(titleArea));
+	    Assert.assertTrue(titleArea.isDisplayed());
+	    HelperFunctions.staticWait(3);
+	  
+	}
+	public void setGhostTemplateGlobal() throws Exception {
+		read1.setExcelFile("./testdata.xlsx", "QA");
+	  
+	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait4.until(ExpectedConditions.visibilityOf(ghostTemplate));
+	    ghostTemplate.click();
+	    nextButton.click();
+	    WebDriverWait wait5 = new WebDriverWait(Driver.getDriver(), 15);
+	    wait5.until(ExpectedConditions.visibilityOf(titleArea));
+	    Assert.assertTrue(titleArea.isDisplayed());
+	    HelperFunctions.staticWait(3);
 	}
 	
 

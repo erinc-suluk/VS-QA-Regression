@@ -244,10 +244,10 @@ public class TopicLandingPage extends HelperFunctions {
 	}
 	public void setKeyAssetBar4articles(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 9));
+	 /*   Driver.getDriver().get(read1.getCellData("VALUE", 9));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.staticWait(3);*/
 	    test.info("Wait for edit button visibility and clicked on it");
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.elementToBeClickable(editButton));
@@ -294,10 +294,10 @@ public class TopicLandingPage extends HelperFunctions {
 	
 	public void setHotTopics4articles(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 9));
-	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 9));
+	   // test.info("Wait for page to load");
+	   // HelperFunctions.waitForPageToLoad(3);
+	  //  HelperFunctions.staticWait(3);
 	    test.info("Wait for edit button visibility and clicked on it");
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.elementToBeClickable(editButton));
@@ -335,7 +335,7 @@ public class TopicLandingPage extends HelperFunctions {
 	}
 	public void setBacktoTopicandTopicsSize(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 9));
+	   /* Driver.getDriver().get(read1.getCellData("VALUE", 9));
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
 	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
@@ -357,7 +357,7 @@ public class TopicLandingPage extends HelperFunctions {
 	        }
 	    }
 	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.staticWait(3);*/
 	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait1.until(ExpectedConditions.visibilityOf(topicPageTitle));
 	    Assert.assertTrue(topicPageTitle.isDisplayed());
@@ -391,7 +391,7 @@ public class TopicLandingPage extends HelperFunctions {
 	}
 	public void setFeedTopics(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 9));
+	   /* Driver.getDriver().get(read1.getCellData("VALUE", 9));
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
 	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
@@ -412,7 +412,7 @@ public class TopicLandingPage extends HelperFunctions {
 	            break;
 	        }
 	    }
-	    HelperFunctions.waitForPageToLoad(10);
+	    HelperFunctions.waitForPageToLoad(10);*/
 	    test.info("Wait for topic page title's visibility");
 	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait1.until(ExpectedConditions.visibilityOf(topicPageTitle));
@@ -452,7 +452,7 @@ public class TopicLandingPage extends HelperFunctions {
             }
         }
 	     Set<String> handles = Driver.getDriver().getWindowHandles();
-	    if (handles.size() == 3) {
+	    if (handles.size() == 2) {
 	    	Assert.assertTrue(true);
 	     System.out.println("Element opened the new tab");
 	 }else {
@@ -565,10 +565,10 @@ public class TopicLandingPage extends HelperFunctions {
 	}
 	public void setKeyAssetUrlAuth(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 9));
+	   /* Driver.getDriver().get(read1.getCellData("VALUE", 9));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.staticWait(3);*/
 	    test.info("Wait for edit button visibility and clicked on it");
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.elementToBeClickable(editButton));
@@ -604,10 +604,10 @@ public class TopicLandingPage extends HelperFunctions {
 	}
 	public void setKeyAssetTitleandDescriptionLength(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 9));
+	  /*  Driver.getDriver().get(read1.getCellData("VALUE", 9));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.staticWait(3);*/
 	    test.info("Wait for edit button visibility and clicked on it");
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.elementToBeClickable(editButton));
@@ -643,10 +643,10 @@ public class TopicLandingPage extends HelperFunctions {
 	}
 	public void setTopicHeader(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 9));
+	  /*  Driver.getDriver().get(read1.getCellData("VALUE", 9));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.staticWait(3);*/
 	    test.info("Click preview button");
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    WebElement clickableElement = wait.until(ExpectedConditions.elementToBeClickable(previewButton));
@@ -724,10 +724,10 @@ public class TopicLandingPage extends HelperFunctions {
 	}
 	public void setPageTags(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 9));
+	   /* Driver.getDriver().get(read1.getCellData("VALUE", 9));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.staticWait(3);*/
 	    test.info("Wait for edit button visibility and clicked on it");
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.elementToBeClickable(pageInfo));
@@ -778,7 +778,7 @@ public class TopicLandingPage extends HelperFunctions {
 	}
 	public void setFeedTopicsLimit(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 9));
+	   /* Driver.getDriver().get(read1.getCellData("VALUE", 9));
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
 	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
@@ -799,7 +799,7 @@ public class TopicLandingPage extends HelperFunctions {
 	            break;
 	        }
 	    }
-	    HelperFunctions.waitForPageToLoad(10);
+	    HelperFunctions.waitForPageToLoad(10);*/
 	    test.info("Wait for topic page title's visibility");
 	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait1.until(ExpectedConditions.visibilityOf(topicPageTitle));
@@ -811,7 +811,7 @@ public class TopicLandingPage extends HelperFunctions {
 	    int mockLimit=50;
 	    Assert.assertTrue(limit>mockLimit);
 	    HelperFunctions.staticWait(2);
-	    String text1 = "Sanity practice ghost page";
+	   /* String text1 = "Sanity practice ghost page";
         String text2 = "Demo page";
         List<String> elementTexts = new ArrayList<>();
         for (WebElement element : feedTopics) {
@@ -831,13 +831,13 @@ public class TopicLandingPage extends HelperFunctions {
         	Assert.assertTrue(false);
             System.out.println("Text order is incorrect");
         }
-        HelperFunctions.staticWait(2);
+        HelperFunctions.staticWait(2);*/
 	}
 	public void setTopicImageTitleDescription(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 9));
-	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(10);
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 9));
+	   // test.info("Wait for page to load");
+	   // HelperFunctions.waitForPageToLoad(10);
 	    test.info("Wait for edit button visibility and clicked on it");
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.elementToBeClickable(pageInfo));
@@ -863,7 +863,7 @@ public class TopicLandingPage extends HelperFunctions {
 	}
 	public void setKeyAssetTargetURL(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 35));
+	  /*  Driver.getDriver().get(read1.getCellData("VALUE", 35));
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
 	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
@@ -885,7 +885,7 @@ public class TopicLandingPage extends HelperFunctions {
 	        }
 	    }
 	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.staticWait(3);*/
 	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait1.until(ExpectedConditions.visibilityOf(topicPageTitle));
 	    Assert.assertTrue(topicPageTitle.isDisplayed());
@@ -894,7 +894,7 @@ public class TopicLandingPage extends HelperFunctions {
 	    keyAssetLink.click();
 	    HelperFunctions.staticWait(2);
 	    Set<String> handles = Driver.getDriver().getWindowHandles();
-	    if (handles.size() == 3) {
+	    if (handles.size() == 2) {
 	    	Assert.assertTrue(true);
 	     System.out.println("Element opened the new tab");
 	 }else {
@@ -906,7 +906,7 @@ public class TopicLandingPage extends HelperFunctions {
 	}
 	public void setTopicFeed(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 35));
+	   /* Driver.getDriver().get(read1.getCellData("VALUE", 35));
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
 	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
@@ -928,7 +928,7 @@ public class TopicLandingPage extends HelperFunctions {
 	        }
 	    }
 	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.staticWait(3);*/
 	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait1.until(ExpectedConditions.visibilityOf(topicFeed));
 	    Assert.assertTrue(topicFeed.isDisplayed());

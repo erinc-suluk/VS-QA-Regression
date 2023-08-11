@@ -159,9 +159,9 @@ public class GhostedPage extends HelperFunctions{
 	
 	public void setMandatoryFields(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 6));
-	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(15);
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 6));
+	   // test.info("Wait for page to load");
+	   // HelperFunctions.waitForPageToLoad(15);
 	    test.info("Wait for ghosted page visibility and click on it");
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    WebElement visibleElement = wait.until(ExpectedConditions.visibilityOf(ghostedPage));

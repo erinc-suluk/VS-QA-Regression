@@ -7,11 +7,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -175,7 +177,7 @@ public class ContentPage extends HelperFunctions{
 	@FindBy(xpath="//h1[@class='cmp-title__text']")
 	private WebElement title2;
 	
-	@FindBy(xpath="//div[@data-path='/content/valuestore/us/en/firmwide/erinc-content/jcr:content/root/container/container_276238855/container/accordion']")
+	@FindBy(xpath="//div[@data-path='/content/valuestore/us/en/firmwide/erinc-content/regression-content-page/jcr:content/root/container/container_276238855/container/accordion']")
 	private WebElement editAccordion;
 	
 	@FindBy(xpath="//coral-tab-label[normalize-space()='Properties']")
@@ -196,7 +198,7 @@ public class ContentPage extends HelperFunctions{
 	@FindBy(xpath="//strong[normalize-space()='The Benefit:']")
 	private WebElement CEOtext;
 	
-	@FindBy(xpath="//strong[normalize-space()='Business:']")
+	@FindBy(xpath="//strong[normalize-space()='Business']")
 	private WebElement CFOtext;
 	
 	@FindBy(xpath="//button[@data-cmp-hook-accordion='button']")
@@ -208,7 +210,7 @@ public class ContentPage extends HelperFunctions{
 	@FindBy(xpath="//a[normalize-space()='Fortune Trust Hub']")
 	private WebElement firstAsset;
 	
-	@FindBy(xpath="//a[@class='vs-content-details__links share-ext external']")
+	@FindBy(xpath="(//a[@class='vs-content-details__links share-ext external'])[1]")
 	private WebElement firstAssetShare;
 	
 	@FindBy(xpath="//a[normalize-space()='Full Fortune in US Business Survey']")
@@ -238,7 +240,7 @@ public class ContentPage extends HelperFunctions{
 	@FindBy(xpath="//a[@class='vs-share-external__get-link-btn share-dynamic-signal']")
 	private WebElement shareSignal;
 	
-	@FindBy(xpath="//h2[@class='vs-did-you-know__heading']")
+	@FindBy(xpath="//div[contains(@class, 'didyouknow')]")
 	private WebElement didYouKnow;
 	
 	@FindBy(xpath="//span[@class='vs-did-you-know__item-heading']")
@@ -250,7 +252,7 @@ public class ContentPage extends HelperFunctions{
 	@FindBy(xpath="//h2[@class='vs-did-you-know__heading']") 
 	private WebElement dykHeading;
 	
-	@FindBy(xpath="//a[@href='/content/valuestore/us/en/firmwide/erinc-content.html']")
+	@FindBy(xpath="//a[@href='/us/en/firmwide/erinc-content.html']")
 	private WebElement hyperLink;
 	
 	@FindBy(xpath="(//h2[@class='vs-content-details__feature-listing-heading'])[1]")
@@ -298,7 +300,7 @@ public class ContentPage extends HelperFunctions{
 	@FindBy(xpath="//a[@data-tag-id='Deals']")
 	private WebElement dealsTag;
 	
-	@FindBy(xpath="//img[@alt='logo']")
+	@FindBy(xpath="//img[contains(@alt, 'logo')]")
 	private WebElement logo;
 	
 	@FindBy(xpath="//figure[@class='vs-card__figure-wrapper']")
@@ -589,7 +591,7 @@ public class ContentPage extends HelperFunctions{
 	@FindBy(xpath="//foundation-autocomplete[@name='./displayImage/fileReference']//button[@title='Open Selection Dialog']")
 	private WebElement imageContent;
 	
-	@FindBy(xpath="//coral-columnview-item[@role='treeitem']")
+	@FindBy(xpath="//div[@title='Value Store']")
 	private WebElement path1image;
 	
 	@FindBy(xpath="//coral-columnview-item[@title='us']")
@@ -613,8 +615,44 @@ public class ContentPage extends HelperFunctions{
 	@FindBy(xpath="//a[normalize-space()='12']")
 	private WebElement nextDay;
 	
+	@FindBy(xpath="//div[@class='vs-title-area__card-updated-time']")
+	private WebElement newLabel;
+	
 	@FindBy(xpath="//coral-datepicker[@name='./creationDate']//input[@role='combobox']")
 	private WebElement publishDateField;
+	
+	@FindBy(xpath="//div[@class='vs-title-area__card-updated-time']")
+	private static List<WebElement> newLabel2;
+	
+	@FindBy(xpath="//coral-alert-content[normalize-space()='The page has been published']")
+	private WebElement publishMessage;
+	
+	@FindBy(xpath="//a[contains(text(),'home page')]")
+	private WebElement mailto;
+	
+	@FindBy(xpath="//img[contains(@src, '404')]")
+	private WebElement img404;
+	
+	@FindBy(xpath="//coral-button-label[normalize-space()='Done']")
+	private WebElement donePage;
+	
+	@FindBy(xpath="//input[@name='./hideFromSiteSearch']")
+	private WebElement hideCheckbox;
+	
+	@FindBy(xpath="//coral-button-label[normalize-space()='Publish']")
+	private WebElement publishButton;
+	
+	@FindBy(xpath="//a[@aria-label='Pause clip']")
+	private WebElement pauseButton;
+	
+	@FindBy(xpath="//div[contains(@data-path, 'accordion/item_1')]//div[@title='Rich Text Component']")
+	private WebElement accordionTextEdit;
+	
+	@FindBy(xpath="//foundation-autocomplete[@name='./linkswrapper/item1/./linksgroup/item0/./internalUrl']//input[@is='coral-textfield']")
+	private WebElement enablersTextField;
+	
+	@FindBy(xpath="//coral-list-item-content[normalize-space()='/content/valuestore/us/en']")
+	private WebElement vsContent;
 	
 	
 	
@@ -647,7 +685,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    js.executeScript("arguments[0].click();", pageInfo);
 	    HelperFunctions.staticWait(2);
 	    openPro.click();
-	    HelperFunctions.waitForPageToLoad(3);
+	    HelperFunctions.waitForPageToLoad(15);
 	    HelperFunctions.staticWait(3);
 	    test.info("Verify the title value matches the page title");
 	    String title2=titleField.getAttribute("value");
@@ -892,10 +930,10 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setAddingText(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	   /* Driver.getDriver().get(read1.getCellData("VALUE", 2));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.staticWait(3);*/
 	    test.info("Wait for preview icon is displayed and click on it");
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.elementToBeClickable(previewButton));
@@ -1086,13 +1124,14 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setAccordion(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	    //Driver.getDriver().get(read1.getCellData("VALUE", 2));
 	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.waitForPageToLoad(15);
+	 
 	    test.info("Wait for edit button visibility and clicked on it");
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.elementToBeClickable(editButton));
+	    //HelperFunctions.staticWait(3);
 	    editButton.click();
 	    HelperFunctions.staticWait(3);
 	    test.info("Clicked on edit accordion");
@@ -1102,8 +1141,8 @@ ReadXLSdata read1=new ReadXLSdata();
 	    configure.click();
 	    HelperFunctions.staticWait(3);
 	    test.info("Wait for pro tab visibility and clicked on it");
-	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait2.until(ExpectedConditions.elementToBeClickable(proTab));
+	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait1.until(ExpectedConditions.elementToBeClickable(proTab));
 	    proTab.click();
 	    HelperFunctions.staticWait(3);
 	    test.info("Check if single checkbox is selected");
@@ -1112,44 +1151,59 @@ ReadXLSdata read1=new ReadXLSdata();
 	    test.info("Clicked on expanded items");
 	    expandedItems.click();
 	    HelperFunctions.staticWait(2);
-	    test.info("Clicked on CFO");
-	    CFO.click();
+	    test.info("Clicked on CEO");
+	    CEO.click();
 	    HelperFunctions.staticWait(2);
 	    test.info("Clicked on done button");
 	    done.click();
-	    HelperFunctions.staticWait(2);
+	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait2.until(ExpectedConditions.elementToBeClickable(editButton));
+	    //HelperFunctions.staticWait(3);
+	    editButton.click();
 	    WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait3.until(ExpectedConditions.elementToBeClickable(previewButton));
+	    wait3.until(ExpectedConditions.elementToBeClickable(accordionTextEdit));
+	    accordionTextEdit.click();
+	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait4.until(ExpectedConditions.visibilityOf(configure));
+	    configure.click();
+	    WebDriverWait wait5 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait5.until(ExpectedConditions.visibilityOf(dykTextEdit));
+	    dykTextEdit.click();
+	    HelperFunctions.staticWait(2);
+        done.click();
+        HelperFunctions.staticWait(2);
+	    WebDriverWait wait6 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait6.until(ExpectedConditions.elementToBeClickable(previewButton));
 	    previewButton.click();
 	    Driver.getDriver().switchTo().frame(0);
 	    HelperFunctions.staticWait(2);
 	    test.info("Check if CEO text is not displayed");
-	    Assert.assertFalse(CEOtext.isDisplayed());
-	    HelperFunctions.staticWait(2);
-	    test.info("Check if CFO text is displayed");
-	    Assert.assertTrue(CFOtext.isDisplayed());
-	    HelperFunctions.staticWait(2);
-	    test.info("Wait for first accordion button is clickable and clicked on it");
-	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait4.until(ExpectedConditions.elementToBeClickable(accordionButtons.get(0)));
-	    accordionButtons.get(0).click();
-	    HelperFunctions.staticWait(2);
-	    test.info("Check if CEO text is displayed");
 	    Assert.assertTrue(CEOtext.isDisplayed());
 	    HelperFunctions.staticWait(2);
-	    test.info("Check if CFO text is not displayed");
+	    test.info("Check if CFO text is displayed");
 	    Assert.assertFalse(CFOtext.isDisplayed());
-	    test.info("Wait for second accordion button is clickable and clicked on it");
-	    WebDriverWait wait5 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait5.until(ExpectedConditions.elementToBeClickable(accordionButtons.get(1)));
+	    HelperFunctions.staticWait(2);
+	    test.info("Wait for first accordion button is clickable and clicked on it");
+	    WebDriverWait wait7 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait7.until(ExpectedConditions.elementToBeClickable(accordionButtons.get(1)));
 	    accordionButtons.get(1).click();
 	    HelperFunctions.staticWait(2);
-	    test.info("Check if CEO text is not displayed");
+	    test.info("Check if CEO text is displayed");
 	    Assert.assertFalse(CEOtext.isDisplayed());
 	    HelperFunctions.staticWait(2);
-	    test.info("Check if CFO text is displayed");
+	    test.info("Check if CFO text is not displayed");
 	    Assert.assertTrue(CFOtext.isDisplayed());
+	    test.info("Wait for second accordion button is clickable and clicked on it");
+	    WebDriverWait wait8 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait8.until(ExpectedConditions.elementToBeClickable(accordionButtons.get(0)));
+	    accordionButtons.get(0).click();
 	    HelperFunctions.staticWait(2);
+	    test.info("Check if CEO text is not displayed");
+	    Assert.assertTrue(CEOtext.isDisplayed());
+	    HelperFunctions.staticWait(2);
+	    test.info("Check if CFO text is displayed");
+	    Assert.assertFalse(CFOtext.isDisplayed());
+	    HelperFunctions.staticWait(3);
 	}
 	public void setHelpfulAssets(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
@@ -1587,10 +1641,10 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setMarketDemandOrange(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	   /* Driver.getDriver().get(read1.getCellData("VALUE", 2));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.staticWait(3);*/
 	    test.info("Wait for edit button's visibility and clicked on it");
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.elementToBeClickable(editButton));
@@ -2042,7 +2096,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setHeaderFooter(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	   /* Driver.getDriver().get(read1.getCellData("VALUE", 2));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
@@ -2063,13 +2117,14 @@ ReadXLSdata read1=new ReadXLSdata();
 	        	Driver.getDriver().switchTo().window(currentHandle);
 	            break;
 	        }
-	    }
+	    }*/
 	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.waitForPageToLoad(15);
+	   
 	    test.info("Wait for visibility of header");
 	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait4.until(ExpectedConditions.visibilityOf(header));
+	    HelperFunctions.staticWait(3);
 	    Assert.assertTrue(header.isDisplayed());
 	    test.info("Verified the header is displayed");
 	    HelperFunctions.staticWait(3);
@@ -2081,12 +2136,50 @@ ReadXLSdata read1=new ReadXLSdata();
 	    Assert.assertTrue(footer.isDisplayed());
 	    test.info("Verified the footer is displayed");
 	    HelperFunctions.staticWait(3);
+	    test.info("Go to the homepage");
+	    Driver.getDriver().get(read1.getCellData("VALUE", 10));
+	    test.info("Wait for page to load");
+	    HelperFunctions.waitForPageToLoad(15);
+	    //HelperFunctions.staticWait(3);
+	    test.info("Wait for visibility of header");
+	    WebDriverWait wait6 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait6.until(ExpectedConditions.visibilityOf(header));
+	    Assert.assertTrue(header.isDisplayed());
+	    test.info("Verified the header is displayed");
+	    HelperFunctions.staticWait(3);
+	    test.info("Scroll to footer");
+	    HelperFunctions.scrollToElement(footer);
+	    test.info("Wait for visibility of footer");
+	    WebDriverWait wait7 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait7.until(ExpectedConditions.visibilityOf(footer));
+	    Assert.assertTrue(footer.isDisplayed());
+	    test.info("Verified the footer is displayed");
+	    HelperFunctions.staticWait(3);
+	    test.info("Go to the topic landing page");
+	    Driver.getDriver().get(read1.getCellData("VALUE", 36));
+	    test.info("Wait for page to load");
+	    HelperFunctions.waitForPageToLoad(15);
+	    //HelperFunctions.staticWait(3);
+	    test.info("Wait for visibility of header");
+	    WebDriverWait wait8 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait8.until(ExpectedConditions.visibilityOf(header));
+	    Assert.assertTrue(header.isDisplayed());
+	    test.info("Verified the header is displayed");
+	    HelperFunctions.staticWait(3);
+	    test.info("Scroll to footer");
+	    HelperFunctions.scrollToElement(footer);
+	    test.info("Wait for visibility of footer");
+	    WebDriverWait wait9 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait9.until(ExpectedConditions.visibilityOf(footer));
+	    Assert.assertTrue(footer.isDisplayed());
+	    test.info("Verified the footer is displayed");
+	    HelperFunctions.staticWait(3);
 	    
 	    
 	}
 	public void setExternalLinkShare(ExtentTest test) throws Exception {
-		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
+		//read1.setExcelFile("./testdata.xlsx", "QA");
+	    /*Driver.getDriver().get(read1.getCellData("VALUE", 2));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
@@ -2109,15 +2202,16 @@ ReadXLSdata read1=new ReadXLSdata();
 	        }
 	    }
 	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
-	    test.info("Verify that helpfulassetTitle is displayed");
-	    Assert.assertTrue(helpfulassetTitle.isDisplayed());
-	    HelperFunctions.staticWait(2);
-	    test.info("Clicked on first asset share icon");
+	    HelperFunctions.waitForPageToLoad(15);*/
+	   // HelperFunctions.staticWait(3);
+	   // test.info("Verify that helpfulassetTitle is displayed");
+	   // Assert.assertTrue(helpfulassetTitle.isDisplayed());
+	   // HelperFunctions.staticWait(2);
+	   // test.info("Clicked on first asset share icon");
 	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait4.until(ExpectedConditions.visibilityOf(firstAssetShare));
 	    Assert.assertTrue(firstAssetShare.isDisplayed());
+	    
 	    firstAssetShare.click();
 	    HelperFunctions.staticWait(2);
 	    test.info("Wait for share modal page is visible");
@@ -2130,6 +2224,14 @@ ReadXLSdata read1=new ReadXLSdata();
 	    Assert.assertTrue(shareEmail.isDisplayed());
 	    test.info("Verify that share Email is displayed");
 	    HelperFunctions.staticWait(3);
+	    copyLink.click();
+	    HelperFunctions.staticWait(2);
+	    test.info("Wait for the 'Link copied!' confirmation to be visible");
+	    WebDriverWait wait6 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait6.until(ExpectedConditions.visibilityOf(copiedLink));
+	    Assert.assertTrue(copiedLink.isDisplayed()); 
+	    test.info("Assert that the 'Link copied!' confirmation is visible");
+	    HelperFunctions.staticWait(2);
 	}
 	public void setShareNewPage(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
@@ -2225,10 +2327,10 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setOffTimeMandatory(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 4));
+	   /* Driver.getDriver().get(read1.getCellData("VALUE", 4));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.staticWait(3);*/
 	    test.info("Clicked on Content page");
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    WebElement visibleElement = wait.until(ExpectedConditions.visibilityOf(contentPage));
@@ -2270,8 +2372,8 @@ ReadXLSdata read1=new ReadXLSdata();
        HelperFunctions.staticWait(3);
 	}
 	public void setDidYouKnowInline(ExtentTest test) throws Exception {
-		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
+		//read1.setExcelFile("./testdata.xlsx", "QA");
+	  /*  Driver.getDriver().get(read1.getCellData("VALUE", 2));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
@@ -2296,7 +2398,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
-	    test.info("Wait for did you know is visible");
+	    test.info("Wait for did you know is visible");*/
 	    WebDriverWait wait5 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait5.until(ExpectedConditions.visibilityOf(didYouKnow));
 	    Assert.assertTrue(didYouKnow.isDisplayed());
@@ -2317,7 +2419,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setHelpfulAssetsLinkUnderlined(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	 /*   Driver.getDriver().get(read1.getCellData("VALUE", 2));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
@@ -2341,9 +2443,11 @@ ReadXLSdata read1=new ReadXLSdata();
 	    }
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
-	    test.info("Verify that helpfulassetTitle is displayed");
-	    Assert.assertTrue(helpfulassetTitle.isDisplayed());
+	    HelperFunctions.staticWait(3);*/
+	    //test.info("Verify that helpfulassetTitle is displayed");
+	   // Assert.assertTrue(helpfulassetTitle.isDisplayed());
+		WebDriverWait wait5 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait5.until(ExpectedConditions.visibilityOf(firstAsset));
 	    HelperFunctions.staticWait(2);
 	    Actions actions = new Actions(Driver.getDriver());
 	    actions.moveToElement(firstAsset).perform();
@@ -2355,54 +2459,27 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setMexicoSideTitles(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 29));
-	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
-	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-	    js.executeScript("arguments[0].click();", pageInfo);
-	    HelperFunctions.staticWait(3);
-	    viewPublished.click();
-	    HelperFunctions.staticWait(2);
-	    String mainWindowHandle = Driver.getDriver().getWindowHandle();
-	    WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait3.until(ExpectedConditions.numberOfWindowsToBe(2));
-	    Set<String> windowHandles = Driver.getDriver().getWindowHandles();
-	    Iterator<String> iterator = windowHandles.iterator();
-	    String currentHandle = "";
-	    while (iterator.hasNext()) {
-	        currentHandle = iterator.next();
-	        if (!currentHandle.equals(mainWindowHandle)) {
-	        	Driver.getDriver().switchTo().window(currentHandle);
-	            break;
-	        }
-	    }
-	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(10);
-	    HelperFunctions.staticWait(3);
+		WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait1.until(ExpectedConditions.visibilityOf(logo));
+		JavascriptExecutor js2 = (JavascriptExecutor) Driver.getDriver();
+	    js2.executeScript("window.scrollBy(0,250)", "");
 	    test.info("Verify that enablers title is displayed");
 	    Assert.assertTrue(enablersSpanish.isDisplayed());
-	    HelperFunctions.staticWait(2);
-	    HelperFunctions.scrollToElement(alliancesSpanish);
+	   // HelperFunctions.staticWait(2);
+	    //HelperFunctions.scrollToElement(alliancesSpanish);
 	    HelperFunctions.staticWait(2);
 	    Assert.assertTrue(alliancesSpanish.isDisplayed());
-	   // HelperFunctions.staticWait(2);
-	   // HelperFunctions.scrollToElement(cmSpanish);
-	   // HelperFunctions.staticWait(2);
-	  //  Assert.assertTrue(cmSpanish.isDisplayed());
-	  //  HelperFunctions.staticWait(2);
-	  //  HelperFunctions.scrollToElement(csSpanish);
-	  //  HelperFunctions.staticWait(2);
-	  //  Assert.assertTrue(csSpanish.isDisplayed());
 	    HelperFunctions.staticWait(3);
 	}
 	public void setConfigureDynamicSignal(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	  /*  Driver.getDriver().get(read1.getCellData("VALUE", 2));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(15);
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.staticWait(3);*/
 	    test.info("Clicked on edit button to edit the shareable link");
+	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait1.until(ExpectedConditions.visibilityOf(editButton));
 	    editButton.click();
 	    HelperFunctions.staticWait(2);
 	    haEdit.click();
@@ -2414,7 +2491,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    firstShareCheckbox.click();
 	    HelperFunctions.staticWait(2);
 	    done.click();
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.staticWait(5);
 	    previewButton.click();
 	    HelperFunctions.staticWait(2);
 	    Driver.getDriver().switchTo().frame(0);
@@ -2435,7 +2512,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    firstShareCheckbox.click();
 	    HelperFunctions.staticWait(2);
 	    done.click();
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.staticWait(5);
 	    test.info("Clicked on page info and published the page");
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 	    js.executeScript("arguments[0].click();", pageInfo);
@@ -2448,7 +2525,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setDynamicSignalOpenNewTab(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	 /*   Driver.getDriver().get(read1.getCellData("VALUE", 2));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
@@ -2472,10 +2549,12 @@ ReadXLSdata read1=new ReadXLSdata();
 	    }
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
-	    test.info("Verify that helpfulassetTitle is displayed");
-	    Assert.assertTrue(helpfulassetTitle.isDisplayed());
-	    HelperFunctions.staticWait(2);
+	    HelperFunctions.staticWait(3);*/
+	    //test.info("Verify that helpfulassetTitle is displayed");
+	   // Assert.assertTrue(helpfulassetTitle.isDisplayed());
+	   // HelperFunctions.staticWait(2);
+		WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait3.until(ExpectedConditions.visibilityOf(firstAssetShare));
 	    test.info("Clicked on first asset share icon");
 	    firstAssetShare.click();
 	    HelperFunctions.staticWait(2);
@@ -2496,15 +2575,15 @@ ReadXLSdata read1=new ReadXLSdata();
 	    HelperFunctions.waitForPageToLoad(15);
 	   // HelperFunctions.staticWait(3);
 	    WebDriverWait wait5 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait5.until(ExpectedConditions.numberOfWindowsToBe(3));
+	    wait5.until(ExpectedConditions.numberOfWindowsToBe(2));
 	    Set<String> windowHandles2 = Driver.getDriver().getWindowHandles();
-	    Assert.assertEquals(windowHandles2.size(), 3, "Expected two windows to be open, but found " + windowHandles.size());
+	    Assert.assertEquals(windowHandles2.size(), 2 );
 	    test.info("Verify that link is open in a new tab");
 	    HelperFunctions.staticWait(2);
 	}
 	public void setCampaignMaterialsOpenNewTab(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	 /*   Driver.getDriver().get(read1.getCellData("VALUE", 2));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
@@ -2528,7 +2607,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    }
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(15);
-	    //HelperFunctions.staticWait(3);
+	    //HelperFunctions.staticWait(3);*/
 	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait4.until(ExpectedConditions.visibilityOf(helpfulassetTitle));
 	    test.info("Verify that helpfulassetTitle is displayed");
@@ -2543,17 +2622,17 @@ ReadXLSdata read1=new ReadXLSdata();
 	    HelperFunctions.waitForPageToLoad(15);
 	   // HelperFunctions.staticWait(3);
 	    WebDriverWait wait5 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait5.until(ExpectedConditions.numberOfWindowsToBe(3));
+	    wait5.until(ExpectedConditions.numberOfWindowsToBe(2));
 	    Set<String> windowHandles2 = Driver.getDriver().getWindowHandles();
-	    Assert.assertEquals(windowHandles2.size(), 3, "Expected two windows to be open, but found " + windowHandles.size());
+	    Assert.assertEquals(windowHandles2.size(), 2);
 	    test.info("Verify that link is open in a new tab");
 	    HelperFunctions.staticWait(2);
 	}
 	public void setConfigureCampaignMaterials(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
-	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(15);
+	//    Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	 //   test.info("Wait for page to load");
+	 //   HelperFunctions.waitForPageToLoad(15);
 	    //HelperFunctions.staticWait(3);
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.visibilityOf(editButton));
@@ -2611,9 +2690,9 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setConfigureClientExamples(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
-	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(15);
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	  //  test.info("Wait for page to load");
+	  //  HelperFunctions.waitForPageToLoad(15);
 	    //HelperFunctions.staticWait(3);
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.visibilityOf(editButton));
@@ -2651,7 +2730,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setClientExampleVisibility(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	  /*  Driver.getDriver().get(read1.getCellData("VALUE", 2));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
@@ -2674,7 +2753,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	        }
 	    }
 	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(15);
+	    HelperFunctions.waitForPageToLoad(15);*/
 	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait4.until(ExpectedConditions.visibilityOf(helpfulassetTitle));
 	    test.info("Verify that helpfulassetTitle is displayed");
@@ -2686,9 +2765,9 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setConfigureMarketDemand(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
-	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(15);
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	  //  test.info("Wait for page to load");
+	  //  HelperFunctions.waitForPageToLoad(15);
 	    //HelperFunctions.staticWait(3);
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.visibilityOf(editButton));
@@ -2726,7 +2805,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setAlliancesLinkOpenNewTab(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	   /* Driver.getDriver().get(read1.getCellData("VALUE", 2));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
@@ -2750,7 +2829,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    }
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(15);
-	    //HelperFunctions.staticWait(3);
+	    //HelperFunctions.staticWait(3);*/
 	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait4.until(ExpectedConditions.visibilityOf(helpfulassetTitle));
 	    test.info("Verify that helpfulassetTitle is displayed");
@@ -2765,17 +2844,17 @@ ReadXLSdata read1=new ReadXLSdata();
 	    HelperFunctions.waitForPageToLoad(15);
 	   // HelperFunctions.staticWait(3);
 	    WebDriverWait wait5 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait5.until(ExpectedConditions.numberOfWindowsToBe(3));
+	    wait5.until(ExpectedConditions.numberOfWindowsToBe(2));
 	    Set<String> windowHandles2 = Driver.getDriver().getWindowHandles();
-	    Assert.assertEquals(windowHandles2.size(), 3, "Expected two windows to be open, but found " + windowHandles.size());
+	    Assert.assertEquals(windowHandles2.size(), 2);
 	    test.info("Verify that link is open in a new tab");
 	    HelperFunctions.staticWait(2);
 	}
 	public void setConfigureAlliances(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
-	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(15);
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	   // test.info("Wait for page to load");
+	   // HelperFunctions.waitForPageToLoad(15);
 	    //HelperFunctions.staticWait(3);
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.visibilityOf(editButton));
@@ -2787,7 +2866,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    //cmEdit.click();
 	    HelperFunctions.staticWait(2);
 	    configure.click();
-	    HelperFunctions.staticWait(2);
+	    //HelperFunctions.staticWait(2);
 	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait2.until(ExpectedConditions.visibilityOf(done));
 	    String actualText="Salesforce";
@@ -2833,7 +2912,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setCampaignStructureLinkOpenNewTab(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 15));
+	  /*  Driver.getDriver().get(read1.getCellData("VALUE", 15));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
@@ -2857,7 +2936,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    }
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(15);
-	    //HelperFunctions.staticWait(3);
+	    //HelperFunctions.staticWait(3);*/
 	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait4.until(ExpectedConditions.visibilityOf(csTitle));
 	    test.info("Verify that campaign structure Title is displayed");
@@ -2870,17 +2949,17 @@ ReadXLSdata read1=new ReadXLSdata();
 	    HelperFunctions.waitForPageToLoad(15);
 	   // HelperFunctions.staticWait(3);
 	    WebDriverWait wait5 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait5.until(ExpectedConditions.numberOfWindowsToBe(3));
+	    wait5.until(ExpectedConditions.numberOfWindowsToBe(2));
 	    Set<String> windowHandles2 = Driver.getDriver().getWindowHandles();
-	    Assert.assertEquals(windowHandles2.size(), 3, "Expected two windows to be open, but found " + windowHandles.size());
+	    Assert.assertEquals(windowHandles2.size(), 2);
 	    test.info("Verify that link is open in a new tab");
 	    HelperFunctions.staticWait(2);
 	}
 	public void setConfigureDidYouKnow(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
-	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(15);
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	   // test.info("Wait for page to load");
+	   // HelperFunctions.waitForPageToLoad(15);
 	    //HelperFunctions.staticWait(3);
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.visibilityOf(editButton));
@@ -2919,7 +2998,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setHelpfulAssetsItems(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	  /*  Driver.getDriver().get(read1.getCellData("VALUE", 2));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
@@ -2943,7 +3022,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    }
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(15);
-	    //HelperFunctions.staticWait(3);
+	    //HelperFunctions.staticWait(3);*/
 	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait4.until(ExpectedConditions.visibilityOf(helpfulassetTitle));
 	    test.info("Verify that helpful asset Title is displayed");
@@ -3050,7 +3129,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setSplit2sections(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 30));
+	 /*   Driver.getDriver().get(read1.getCellData("VALUE", 30));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
@@ -3074,7 +3153,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    }
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(15);
-	    //HelperFunctions.staticWait(3);
+	    //HelperFunctions.staticWait(3);*/
 	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait4.until(ExpectedConditions.visibilityOf(titleArea));
 	    test.info("Verify that helpful asset Title is displayed");
@@ -3096,7 +3175,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setHelpfulAssetsInternalExternal(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 30));
+	  /*  Driver.getDriver().get(read1.getCellData("VALUE", 30));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
@@ -3120,7 +3199,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    }
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(15);
-	    //HelperFunctions.staticWait(3);
+	    //HelperFunctions.staticWait(3);*/
 	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait4.until(ExpectedConditions.visibilityOf(titleArea));
 	    test.info("Verify that helpful asset Title is displayed");
@@ -3141,7 +3220,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setEnablersLinks(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	 /*   Driver.getDriver().get(read1.getCellData("VALUE", 2));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
@@ -3165,7 +3244,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    }
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.staticWait(3);*/
 	    test.info("Scroll to enablers title");
 	    HelperFunctions.scrollToElement(enablersTitle);
 	    test.info("Wait for enablers title is visible");
@@ -3193,18 +3272,18 @@ ReadXLSdata read1=new ReadXLSdata();
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
 	    WebDriverWait wait5 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait5.until(ExpectedConditions.numberOfWindowsToBe(3));
+	    wait5.until(ExpectedConditions.numberOfWindowsToBe(2));
 	    Set<String> windowHandles2 = Driver.getDriver().getWindowHandles();
-	    Assert.assertEquals(windowHandles2.size(), 3, "Expected two windows to be open, but found " + windowHandles.size());
+	    Assert.assertEquals(windowHandles2.size(), 2);
 	    test.info("Verify that link is open in a new tab");
 	    HelperFunctions.staticWait(2);
 	    
 	}
 	public void setUpdateNonMandatoryTag(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 30));
-	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(15);
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 30));
+	  //  test.info("Wait for page to load");
+	  //  HelperFunctions.waitForPageToLoad(15);
 	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 	    js.executeScript("arguments[0].click();", pageInfo);
 	    HelperFunctions.staticWait(2);
@@ -3241,9 +3320,9 @@ ReadXLSdata read1=new ReadXLSdata();
 	
 	public void setPWCButton(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 30));
-	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(15);
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 30));
+	  //  test.info("Wait for page to load");
+	  //  HelperFunctions.waitForPageToLoad(15);
 	    WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait3.until(ExpectedConditions.visibilityOf(pwcButtonEdit));
 	    pwcButtonEdit.click();
@@ -3287,24 +3366,27 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setInCaseMissedItEdit(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 39));
-	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(20);
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 39));
+	  //  test.info("Wait for page to load");
+	    HelperFunctions.waitForPageToLoad(10);
+	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+	    wait.until(ExpectedConditions.elementToBeClickable(editButton));
+	    editButton.click();
 	    HelperFunctions.scrollToElement(createMissed);
 	    HelperFunctions.staticWait(2);
 	    createMissed.click();
 	    HelperFunctions.staticWait(3);
 	    insertComponent.click();
-	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
-	    wait.until(ExpectedConditions.visibilityOf(enterKeyword));
+	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait1.until(ExpectedConditions.visibilityOf(enterKeyword));
 	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 	    js.executeScript("arguments[0].click();", missedComponent);
 	    HelperFunctions.staticWait(3);
 	    editMissed.click();
 	    HelperFunctions.staticWait(3);
 	    configure.click();
-	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait1.until(ExpectedConditions.visibilityOf(selectHeading));
+	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait2.until(ExpectedConditions.visibilityOf(selectHeading));
 	    selectHeading.click();
 	    HelperFunctions.staticWait(3);
 	    missedHeading.click();
@@ -3349,8 +3431,31 @@ ReadXLSdata read1=new ReadXLSdata();
 	    HelperFunctions.staticWait(2);
 	    done.click();
 	    HelperFunctions.staticWait(3);
-	    
-	    
+	    JavascriptExecutor js3 = (JavascriptExecutor) Driver.getDriver();
+	    js3.executeScript("arguments[0].click();", pageInfo);
+	    HelperFunctions.staticWait(2);
+	    WebDriverWait wait6 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait6.until(ExpectedConditions.elementToBeClickable(publishPage));
+	    publishPage.click();
+	    HelperFunctions.staticWait(5);
+	   /* try {
+        	if (publishButton.isDisplayed()) {
+        	   
+        		publishButton.click();
+        	} 
+        	}catch(NoSuchElementException | StaleElementReferenceException ignored) {
+        		
+        	}*/
+	   /* try {
+	    if(publishButton.isDisplayed()) {
+	    	publishButton.click();
+	    }else {
+	    	System.out.println("Button is not displayed");
+	    }
+	    }catch(NoSuchElementException e) {
+	    	System.out.println("Skip that step");
+	    }
+	    HelperFunctions.staticWait(5);*/
 	   /* WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.visibilityOf(pwcButtonEdit));
 	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
@@ -3373,7 +3478,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setInCaseMissedItCardsNumbers(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 39));
+	   /* Driver.getDriver().get(read1.getCellData("VALUE", 39));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
@@ -3395,7 +3500,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	            break;
 	        }
 	    }
-	    test.info("Wait for page to load");
+	    test.info("Wait for page to load");*/
 	    HelperFunctions.waitForPageToLoad(15);
 	    test.info("Scroll to missed it title");
 	    HelperFunctions.scrollToElement(missedItTitle);
@@ -3413,7 +3518,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setIncaseYouMissedIt(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 39));
+	  /*  Driver.getDriver().get(read1.getCellData("VALUE", 39));
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
 	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
@@ -3435,7 +3540,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	        }
 	    }
 	    HelperFunctions.waitForPageToLoad(15);
-	    test.info("Wait for logo visibility");
+	    test.info("Wait for logo visibility");*/
 	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait2.until(ExpectedConditions.visibilityOf(logo));
 	    HelperFunctions.staticWait(3);
@@ -3475,7 +3580,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setIncaseYouMissedItLabels(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 39));
+	 /*   Driver.getDriver().get(read1.getCellData("VALUE", 39));
 	    HelperFunctions.waitForPageToLoad(10);
 	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 	    js.executeScript("arguments[0].click();", pageInfo);
@@ -3495,7 +3600,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	            break;
 	        }
 	    }
-	    HelperFunctions.waitForPageToLoad(15);
+	    HelperFunctions.waitForPageToLoad(15);*/
 	    test.info("Wait for logo visibility");
 	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait2.until(ExpectedConditions.visibilityOf(logo));
@@ -3535,7 +3640,10 @@ ReadXLSdata read1=new ReadXLSdata();
         }
 	    HelperFunctions.staticWait(3);
 	    Driver.getDriver().get(read1.getCellData("VALUE", 39));
-	    HelperFunctions.waitForPageToLoad(20);
+	    HelperFunctions.waitForPageToLoad(10);
+	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+	    wait.until(ExpectedConditions.elementToBeClickable(editButton));
+	    editButton.click();
 	    HelperFunctions.scrollToElement(editMissed);
 	    HelperFunctions.staticWait(3);
 	    editMissed.click();
@@ -3544,14 +3652,21 @@ ReadXLSdata read1=new ReadXLSdata();
 	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait4.until(ExpectedConditions.visibilityOf(deleteButton));
 	    deleteButton.click();
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.staticWait(5);
+	    JavascriptExecutor js3 = (JavascriptExecutor) Driver.getDriver();
+	    js3.executeScript("arguments[0].click();", pageInfo);
+	    HelperFunctions.staticWait(2);
+	    WebDriverWait wait6 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait6.until(ExpectedConditions.elementToBeClickable(publishPage));
+	    publishPage.click();
+	    HelperFunctions.staticWait(5);
 	    
 	}
 	public void setVideoPlayerEdit(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 30));
-	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(15);
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 30));
+	  //  test.info("Wait for page to load");
+	   // HelperFunctions.waitForPageToLoad(15);
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.elementToBeClickable(editButton));
 	    editButton.click();
@@ -3634,7 +3749,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setVideoPlayerElements(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 30));
+	  /*  Driver.getDriver().get(read1.getCellData("VALUE", 30));
 	    HelperFunctions.waitForPageToLoad(10);
 	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 	    js.executeScript("arguments[0].click();", pageInfo);
@@ -3654,7 +3769,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	            break;
 	        }
 	    }
-	    HelperFunctions.waitForPageToLoad(15);
+	    HelperFunctions.waitForPageToLoad(15);*/
 	    test.info("Wait for logo visibility");
 	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait2.until(ExpectedConditions.visibilityOf(logo));
@@ -3665,21 +3780,30 @@ ReadXLSdata read1=new ReadXLSdata();
 	    HelperFunctions.staticWait(2);
 	    JavascriptExecutor js7 = (JavascriptExecutor) Driver.getDriver();
 	    js7.executeScript("arguments[0].click();", playButton);
-	    WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
+	  /*  WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait3.until(ExpectedConditions.visibilityOf(videoPlayer));
 	    Actions actions = new Actions(Driver.getDriver());
-	    actions.moveToElement(videoPlayer).perform();
+	    actions.moveToElement(videoPlayer).perform();*/
+	    HelperFunctions.staticWait(2);
+	    JavascriptExecutor js8 = (JavascriptExecutor) Driver.getDriver();
+	    js8.executeScript("arguments[0].click();", pauseButton);
+	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait4.until(ExpectedConditions.visibilityOf(volume));
 	    Assert.assertTrue(volume.isDisplayed());
+	    HelperFunctions.staticWait(2);
 	    Assert.assertTrue(timers.isDisplayed());
+	    HelperFunctions.staticWait(2);
 	    Assert.assertTrue(qualitySettings.isDisplayed());
+	    HelperFunctions.staticWait(2);
 	    Assert.assertTrue(speed.isDisplayed());
+	    HelperFunctions.staticWait(2);
 	    Assert.assertTrue(fullScreen.isDisplayed());
 	    HelperFunctions.staticWait(3);
 	    
 	}
 	public void setPwcButtonNewTab(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 30));
+	  /*  Driver.getDriver().get(read1.getCellData("VALUE", 30));
 	    HelperFunctions.waitForPageToLoad(10);
 	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 	    js.executeScript("arguments[0].click();", pageInfo);
@@ -3699,7 +3823,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	            break;
 	        }
 	    }
-	    HelperFunctions.waitForPageToLoad(15);
+	    HelperFunctions.waitForPageToLoad(15);*/
 	    test.info("Wait for logo visibility");
 	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait2.until(ExpectedConditions.visibilityOf(pwcButton));
@@ -3707,7 +3831,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    pwcButton.click();
 	    HelperFunctions.staticWait(3);
 	    Set<String> handles = Driver.getDriver().getWindowHandles();
-	    if (handles.size() == 3) {
+	    if (handles.size() == 2) {
 	    	Assert.assertTrue(true);
 	     System.out.println("Element opened the new tab");
 	 }else {
@@ -3718,7 +3842,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setRelatedArticle(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
+	 /*   Driver.getDriver().get(read1.getCellData("VALUE", 2));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);
@@ -3741,7 +3865,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	        }
 	    }
 	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(10);
+	    HelperFunctions.waitForPageToLoad(10);*/
 	    test.info("Wait for visibility of first asset share icon");
 	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait4.until(ExpectedConditions.visibilityOf(logo));
@@ -3762,7 +3886,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setMXFooter(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 29));
+	  /*  Driver.getDriver().get(read1.getCellData("VALUE", 29));
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(10);
 	    HelperFunctions.staticWait(3);
@@ -3785,7 +3909,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	        }
 	    }
 	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(10);
+	    HelperFunctions.waitForPageToLoad(10);*/
 	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait4.until(ExpectedConditions.visibilityOf(contentBox));
 	    HelperFunctions.scrollToElement(footer);
@@ -3801,9 +3925,9 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setWhatOthersSystemAuthored(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 4));
-	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(15);
+	   // Driver.getDriver().get(read1.getCellData("VALUE", 4));
+	   // test.info("Wait for page to load");
+	   // HelperFunctions.waitForPageToLoad(15);
 	    test.info("Wait for content page visibility and click on it");
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    WebElement visibleElement = wait.until(ExpectedConditions.visibilityOf(contentPage));
@@ -3876,15 +4000,21 @@ ReadXLSdata read1=new ReadXLSdata();
         HelperFunctions.staticWait(2);
         selectButton.click();
         HelperFunctions.staticWait(2);
-        HelperFunctions.scrollToElement(publishDateField);
-        publishDateField.click();
+        HelperFunctions.waitForPageToLoad(15);
+	    HelperFunctions.staticWait(3);
+	    HelperFunctions.scrollToElement(publishDateField);
 	    HelperFunctions.staticWait(2);
-	    LocalDate currentDate2 = LocalDate.now();
-
-        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("MMMM dd, yyyy hh:mm a");
-        String formattedDate2 = currentDate2.format(formatter2);
-        publishDateField.sendKeys(formattedDate2);
+	    publishDateField.click();
 	    HelperFunctions.staticWait(2);
+	    publishDateField.clear();
+	    HelperFunctions.staticWait(2);
+	    test.info("Scrolled to publish date and cleared it");
+	    LocalDate today = LocalDate.now();
+	    DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    String formattedDate2 = today.format(formatter2);
+	    publishDateField.sendKeys(formattedDate2);
+	    HelperFunctions.staticWait(2);
+	    test.info("Enter the today's date");
 	    calendar.click();
 	    HelperFunctions.staticWait(2);
 	    calendar.click();
@@ -3907,9 +4037,323 @@ ReadXLSdata read1=new ReadXLSdata();
 	    HelperFunctions.staticWait(2);
 	    createButton.click();
 	    WebDriverWait wait15 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait15.until(ExpectedConditions.visibilityOf(openPage));
-	    openPage.click();
+	    wait15.until(ExpectedConditions.visibilityOf(donePage));
+	    donePage.click();
+	    HelperFunctions.waitForPageToLoad(15);
+	    Driver.getDriver().get(read1.getCellData("VALUE", 47));
+	    HelperFunctions.waitForPageToLoad(15);
+	    WebDriverWait wait16 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait16.until(ExpectedConditions.visibilityOf(previewButton));
+	    previewButton.click();
+	    Driver.getDriver().switchTo().frame(0);
+	    WebDriverWait wait17 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait17.until(ExpectedConditions.visibilityOf(whatOthersTitle));
+	    Assert.assertTrue(whatOthersTitle.isDisplayed());
+	    HelperFunctions.staticWait(3);
 	    
+	    
+	}
+	public void setNewLabel(ExtentTest test) throws Exception {
+		read1.setExcelFile("./testdata.xlsx", "QA");
+	    //Driver.getDriver().get(read1.getCellData("VALUE", 2));
+        test.info("Wait for page to load");
+	   /* HelperFunctions.waitForPageToLoad(15);
+	  
+	    test.info("Wait for visibility of new label");
+	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+	    wait.until(ExpectedConditions.visibilityOf(newLabel));
+	    HelperFunctions.staticWait(3);
+	    Assert.assertTrue(newLabel.isDisplayed());
+	    test.info("Verified new label is displayed");
+	    HelperFunctions.staticWait(2);
+	    Driver.getDriver().get(read1.getCellData("VALUE", 16));*/
+	    test.info("Go to authoring page and click page info button and open properties");
+	    HelperFunctions.waitForPageToLoad(15);
+	    previewButton.click();
+	    Driver.getDriver().switchTo().frame(0);
+	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait1.until(ExpectedConditions.visibilityOf(newLabel));
+	    Assert.assertTrue(newLabel.isDisplayed());
+	    HelperFunctions.staticWait(2);
+	    Driver.getDriver().switchTo().defaultContent();
+	    editButton.click();
+	    HelperFunctions.staticWait(2);
+	    test.info("Wait for visibility of page info and clicked on it");
+	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait2.until(ExpectedConditions.visibilityOf(pageInfo));
+	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+	    js.executeScript("arguments[0].click();", pageInfo);
+	    HelperFunctions.staticWait(2);
+	    test.info("Clicked on open properties");
+	    openPro.click();
+	    HelperFunctions.waitForPageToLoad(15);
+	    HelperFunctions.staticWait(3);
+	    test.info("Scrolled to publish date and cleared it");
+	    HelperFunctions.scrollToElement(publishDateField);
+	    HelperFunctions.staticWait(2);
+	    publishDateField.click();
+	    HelperFunctions.staticWait(2);
+	    publishDateField.clear();
+	    test.info("Scrolled to publish date and cleared it");
+	    HelperFunctions.staticWait(2);
+	    LocalDate threeMonthsAgo = LocalDate.now().minusMonths(1).minusDays(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    String formattedDate = threeMonthsAgo.format(formatter);
+        publishDateField.sendKeys(formattedDate);
+        test.info("Enter the date before than today");
+	    HelperFunctions.staticWait(3);
+	    saveClose.click();
+	    test.info("Clicked on save and close");
+	    HelperFunctions.waitForPageToLoad(15);
+	    //HelperFunctions.staticWait(3);
+	    test.info("Wait for visibility of page info and clicked on it");
+	    WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait3.until(ExpectedConditions.visibilityOf(pageInfo));
+	    JavascriptExecutor js2 = (JavascriptExecutor) Driver.getDriver();
+	    js2.executeScript("arguments[0].click();", pageInfo);
+	    HelperFunctions.staticWait(5);
+	    test.info("Clicked on publish page");
+	    publishPage.click();
+	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait4.until(ExpectedConditions.visibilityOf(publishMessage));
+	    test.info("Go to the publisher page");
+	   /* Driver.getDriver().get(read1.getCellData("VALUE", 17));
+	    HelperFunctions.waitForPageToLoad(15);
+	    HelperFunctions.staticWait(3);*/
+	    previewButton.click();
+	    Driver.getDriver().switchTo().frame(0);
+	    HelperFunctions.staticWait(3);
+	    Assert.assertTrue(newLabel2.isEmpty());
+	    test.info("Verified new label is NOT displayed");
+	    HelperFunctions.staticWait(2);
+	    Driver.getDriver().switchTo().defaultContent();
+	    editButton.click();
+	    //HelperFunctions.staticWait(2);
+	   /* Driver.getDriver().get(read1.getCellData("VALUE", 16));
+	    test.info("Go to authoring page and click page info button and open properties");
+	    HelperFunctions.waitForPageToLoad(15);*/
+	    //HelperFunctions.staticWait(3);
+	    test.info("Wait for visibility of page info and clicked on it");
+	    WebDriverWait wait5 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait5.until(ExpectedConditions.visibilityOf(pageInfo));
+	    JavascriptExecutor js3 = (JavascriptExecutor) Driver.getDriver();
+	    js3.executeScript("arguments[0].click();", pageInfo);
+	    HelperFunctions.staticWait(2);
+	    test.info("Clicked on open properties");
+	    openPro.click();
+	    HelperFunctions.waitForPageToLoad(15);
+	    HelperFunctions.staticWait(3);
+	    HelperFunctions.scrollToElement(publishDateField);
+	    HelperFunctions.staticWait(2);
+	    publishDateField.click();
+	    HelperFunctions.staticWait(2);
+	    publishDateField.clear();
+	    HelperFunctions.staticWait(2);
+	    test.info("Scrolled to publish date and cleared it");
+	    LocalDate today = LocalDate.now();
+	    DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    String formattedDate2 = today.format(formatter2);
+	    publishDateField.sendKeys(formattedDate2);
+	    HelperFunctions.staticWait(2);
+	    test.info("Enter the today's date");
+	    saveClose.click();
+	    test.info("Clicked on save and close");
+	    HelperFunctions.waitForPageToLoad(15);
+	   // HelperFunctions.staticWait(3);
+	    test.info("Wait for visibility of page info and clicked on it");
+	    WebDriverWait wait6 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait6.until(ExpectedConditions.visibilityOf(pageInfo));
+	    JavascriptExecutor js4 = (JavascriptExecutor) Driver.getDriver();
+	    js4.executeScript("arguments[0].click();", pageInfo);
+	    HelperFunctions.staticWait(5);
+	    test.info("Clicked on publish page");
+	    publishPage.click();
+	    WebDriverWait wait7 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait7.until(ExpectedConditions.visibilityOf(publishMessage));
+	    HelperFunctions.staticWait(3);
+	}
+	public void setMailtoColor(ExtentTest test) throws Exception {
+		read1.setExcelFile("./testdata.xlsx", "QA");
+		WebDriverWait wait6 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait6.until(ExpectedConditions.visibilityOf(img404));
+	    Assert.assertTrue(img404.isDisplayed());
+	    HelperFunctions.staticWait(2);
+	        String originalBorderBottom = mailto.getCssValue("border-bottom");
+	        System.out.println(originalBorderBottom);
+	        
+	        Actions actions = new Actions(Driver.getDriver());
+	        JavascriptExecutor js2 = (JavascriptExecutor) Driver.getDriver();
+	        js2.executeScript("arguments[0].setAttribute('style', 'border: 2px solid red;');", mailto);
+	        
+	        actions.moveToElement(mailto).build().perform();
+	        String borderBottom = mailto.getCssValue("border-bottom");
+	        System.out.println("borderBottom: " + borderBottom);
+	        
+	        Assert.assertNotEquals(originalBorderBottom, borderBottom);
+	        HelperFunctions.staticWait(2);
+	        test.info("Verified all content title's border bottom are changing when move the cursor");
+	    
+	    HelperFunctions.staticWait(2);
+	    mailto.click();
+	    HelperFunctions.waitForPageToLoad(15);
+	    String currentUrl=Driver.getDriver().getCurrentUrl();
+	    String expectedUrl="/us/en.html";
+	    Assert.assertTrue(currentUrl.endsWith(expectedUrl));
+	    HelperFunctions.staticWait(3);
+	}
+	public void setMailtoMexico(ExtentTest test) throws Exception {
+		read1.setExcelFile("./testdata.xlsx", "QA");
+		WebDriverWait wait6 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait6.until(ExpectedConditions.visibilityOf(img404));
+	    Assert.assertTrue(img404.isDisplayed());    
+	    HelperFunctions.staticWait(3);
+	}
+	public void setHideSiteSearch(ExtentTest test) throws Exception {
+		read1.setExcelFile("./testdata.xlsx", "QA");
+		JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+		js.executeScript("arguments[0].click();", pageInfo);
+		HelperFunctions.staticWait(2);
+		openPro.click();
+		HelperFunctions.waitForPageToLoad(15);
+		HelperFunctions.staticWait(3);
+	    HelperFunctions.scrollToElement(hideCheckbox);
+		HelperFunctions.staticWait(3);
+		hideCheckbox.click();
+		HelperFunctions.staticWait(3);
+		saveClose.click();
+		HelperFunctions.waitForPageToLoad(15);
+		JavascriptExecutor js2 = (JavascriptExecutor) Driver.getDriver();
+	    js2.executeScript("arguments[0].click();", pageInfo);
+	    HelperFunctions.staticWait(5);
+	    //WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+	    //wait.until(ExpectedConditions.elementToBeClickable(publishPage));
+	    publishPage.click();
+	    HelperFunctions.staticWait(7);
+	    Driver.getDriver().get(read1.getCellData("VALUE", 15));
+	    HelperFunctions.waitForPageToLoad(15);
+	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait1.until(ExpectedConditions.elementToBeClickable(previewButton));
+	    previewButton.click();
+	    Driver.getDriver().switchTo().frame(0);
+	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait2.until(ExpectedConditions.visibilityOf(whatContents.get(0)));
+		String expected="Hiding Automation Page";
+		for(WebElement each:whatContents) {
+			if(each.getText().contains(expected)) {
+				Assert.assertTrue(false);
+			}
+		}
+		HelperFunctions.staticWait(3);
+		Driver.getDriver().get(read1.getCellData("VALUE", 49));
+		HelperFunctions.waitForPageToLoad(15);
+		JavascriptExecutor js3 = (JavascriptExecutor) Driver.getDriver();
+		js3.executeScript("arguments[0].click();", pageInfo);
+		HelperFunctions.staticWait(2);
+		openPro.click();
+		HelperFunctions.waitForPageToLoad(15);
+		HelperFunctions.staticWait(3);
+	    HelperFunctions.scrollToElement(hideCheckbox);
+		HelperFunctions.staticWait(3);
+		hideCheckbox.click();
+		HelperFunctions.staticWait(3);
+		saveClose.click();
+		HelperFunctions.waitForPageToLoad(15);
+		JavascriptExecutor js4 = (JavascriptExecutor) Driver.getDriver();
+	    js4.executeScript("arguments[0].click();", pageInfo);
+	    HelperFunctions.staticWait(5);
+	    //WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
+	    //wait2.until(ExpectedConditions.elementToBeClickable(publishPage));
+	    publishPage.click();
+	    HelperFunctions.staticWait(7);
+	    Driver.getDriver().get(read1.getCellData("VALUE", 15));
+	    HelperFunctions.waitForPageToLoad(15);
+	    WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait3.until(ExpectedConditions.elementToBeClickable(previewButton));
+	    previewButton.click();
+	    Driver.getDriver().switchTo().frame(0);
+	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait4.until(ExpectedConditions.visibilityOf(whatContents.get(0)));
+		String expected2="Hiding Automation Page";
+		for(WebElement each:whatContents) {
+			if(each.getText().contains(expected2)) {
+				Assert.assertTrue(true);
+			}
+		}
+		HelperFunctions.staticWait(3);
+	}
+	public void setInternalUrl(ExtentTest test) throws Exception {
+		read1.setExcelFile("./testdata.xlsx", "QA");
+		WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+	    wait.until(ExpectedConditions.visibilityOf(firstAsset));
+	    firstAsset.click();
+	    String currentTabHandle=Driver.getDriver().getWindowHandle();
+	    for(String handle:Driver.getDriver().getWindowHandles()) {
+	    	if(!handle.equals(currentTabHandle)) {
+	    		Driver.getDriver().switchTo().window(handle);
+	    		break;
+	    	}
+	    }
+	    String newTabUrl=Driver.getDriver().getCurrentUrl();
+	    String expectedUrl="https://valuestore-qa.pwc.com/us/en/firmwide.html";
+	    Assert.assertTrue(newTabUrl.contains(expectedUrl));
+	    System.out.println(newTabUrl);
+	    HelperFunctions.staticWait(3);
+	    
+	}
+	public void setExternalUrl(ExtentTest test) throws Exception {
+		read1.setExcelFile("./testdata.xlsx", "QA");
+	   
+	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait1.until(ExpectedConditions.visibilityOf(secondAsset));
+	    secondAsset.click();
+	    String currentTabHandle2=Driver.getDriver().getWindowHandle();
+	    for(String handle2:Driver.getDriver().getWindowHandles()) {
+	    	if(!handle2.equals(currentTabHandle2)) {
+	    		Driver.getDriver().switchTo().window(handle2);
+	    		break;
+	    	}
+	    }
+	    String newTabUrl2=Driver.getDriver().getCurrentUrl();
+	    String expectedUrl="https://www.pwc.com/";
+	    Assert.assertTrue(newTabUrl2.contains(expectedUrl));
+	    System.out.println(newTabUrl2);
+	    HelperFunctions.staticWait(3);
+	}
+	public void setEnablersEditUrl(ExtentTest test) throws Exception {
+		read1.setExcelFile("./testdata.xlsx", "QA");
+	   
+		WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+		wait.until(ExpectedConditions.elementToBeClickable(editButton));
+		editButton.click();
+		HelperFunctions.staticWait(3);
+		alliancesEdit.click();
+		WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait1.until(ExpectedConditions.visibilityOf(configure));
+	    configure.click();
+	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait2.until(ExpectedConditions.visibilityOf(done));
+	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+		js.executeScript("arguments[0].click();", enablersTextField);
+		enablersTextField.clear();
+		HelperFunctions.staticWait(3);
+		String expected="/content/valuestore/us/en";
+		enablersTextField.sendKeys(expected);
+		WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait3.until(ExpectedConditions.visibilityOf(vsContent));
+	    vsContent.click();
+	    HelperFunctions.staticWait(3);
+	    done.click();
+	    HelperFunctions.staticWait(3);
+	    JavascriptExecutor js4 = (JavascriptExecutor) Driver.getDriver();
+	    js4.executeScript("arguments[0].click();", pageInfo);
+	    HelperFunctions.staticWait(5);
+	    //WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
+	    //wait2.until(ExpectedConditions.elementToBeClickable(publishPage));
+	    publishPage.click();
+	    HelperFunctions.staticWait(5);
+		
+		
+		    
 	}
 	
 }
