@@ -654,6 +654,30 @@ public class ContentPage extends HelperFunctions{
 	@FindBy(xpath="//coral-list-item-content[normalize-space()='/content/valuestore/us/en']")
 	private WebElement vsContent;
 	
+	@FindBy(xpath="//coral-columnview-item[@title='Supplementary']")
+	private WebElement supplementary;
+	
+	@FindBy(xpath="//coral-columnview-item[@title='GX']")
+	private WebElement GXpath;
+	
+	@FindBy(xpath="(//coral-columnview-item-content[@title='Category'])[2]")
+	private WebElement Catpath;
+	
+	@FindBy(xpath="//coral-columnview-item[@title='Electronics']//coral-columnview-item-thumbnail[@role='presentation']")
+	private WebElement Catpath1;
+	
+	@FindBy(xpath="(//coral-columnview-item-content[@title='Topic'])[2]")
+	private WebElement Toppath;
+	
+	@FindBy(xpath="(//coral-columnview-item[contains(@title, 'ESG')]//coral-columnview-item-thumbnail[@role='presentation'])[1]")
+	private WebElement Toppath1;
+	
+	@FindBy(xpath="(//coral-columnview-item-content[@title='Economic buyer'])[2]")
+	private WebElement Ecopath;
+	
+	@FindBy(xpath="//coral-columnview-item[contains(@title, 'Chief')]//coral-columnview-item-thumbnail[@role='presentation']")
+	private WebElement Ecopath1;
+	
 	
 	
 ReadXLSdata read1=new ReadXLSdata();
@@ -4354,6 +4378,82 @@ ReadXLSdata read1=new ReadXLSdata();
 		
 		
 		    
+	}
+	public void setPrimaryTagsForGlobal(ExtentTest test) throws Exception {
+		read1.setExcelFile("./testdata.xlsx", "QA");
+		WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+		WebElement visibleElement = wait.until(ExpectedConditions.visibilityOf(contentPage));
+		visibleElement.click();
+		test.info("Select content page template");
+		HelperFunctions.staticWait(2);
+		test.info("Click on Next button");
+		nextButton.click();
+	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 15);
+	    WebElement visibleElement2 = wait2.until(ExpectedConditions.visibilityOf(titleField));
+	    visibleElement2.click();
+	    HelperFunctions.staticWait(2);
+	    test.info("Scroll to Off time element");
+	    HelperFunctions.scrollToElement(offTime);
+	    HelperFunctions.staticWait(2);
+	    test.info("Click on Primary 1 tag and select tags");
+        primary1.click();
+        WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait3.until(ExpectedConditions.visibilityOf(supplementary));
+	    supplementary.click();
+        WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait4.until(ExpectedConditions.visibilityOf(GXpath));
+        GXpath.click();
+        WebDriverWait wait5= new WebDriverWait(Driver.getDriver(), 10);
+	    wait5.until(ExpectedConditions.visibilityOf(Catpath));
+	    Catpath.click();
+	    WebDriverWait wait6= new WebDriverWait(Driver.getDriver(), 10);
+	    wait6.until(ExpectedConditions.visibilityOf(Catpath1));
+	    Catpath1.click();
+	    HelperFunctions.staticWait(2);
+        selectButton.click();
+        HelperFunctions.staticWait(2);
+        test.info("Verified choosing supplemantary category tags");
+        test.info("Click on Primary 2 tag and select tags");
+        WebDriverWait wait7 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait7.until(ExpectedConditions.visibilityOf(primary2));
+        primary2.click();
+        HelperFunctions.staticWait(2);
+        WebDriverWait wait8 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait8.until(ExpectedConditions.visibilityOf(supplementary));
+	    supplementary.click();
+	    WebDriverWait wait9= new WebDriverWait(Driver.getDriver(), 10);
+	    wait9.until(ExpectedConditions.visibilityOf(GXpath));
+        GXpath.click();
+        WebDriverWait wait10= new WebDriverWait(Driver.getDriver(), 10);
+	    wait10.until(ExpectedConditions.visibilityOf(Toppath));
+	    Toppath.click();
+	    WebDriverWait wait11= new WebDriverWait(Driver.getDriver(), 10);
+	    wait11.until(ExpectedConditions.visibilityOf(Toppath1));
+	    Toppath1.click();
+	    HelperFunctions.staticWait(2);
+        selectButton.click();
+        HelperFunctions.staticWait(2);
+        test.info("Verified choosing supplemantary topic tags");
+        test.info("Click on Primary 3 tag and select tags");
+        WebDriverWait wait12 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait12.until(ExpectedConditions.visibilityOf(primary3));
+        primary3.click();
+        WebDriverWait wait13 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait13.until(ExpectedConditions.visibilityOf(supplementary));
+        supplementary.click();
+        WebDriverWait wait14= new WebDriverWait(Driver.getDriver(), 10);
+	    wait14.until(ExpectedConditions.visibilityOf(GXpath));
+        GXpath.click();
+        WebDriverWait wait15= new WebDriverWait(Driver.getDriver(), 10);
+	    wait15.until(ExpectedConditions.visibilityOf(Ecopath));
+	    Ecopath.click();
+	    WebDriverWait wait16= new WebDriverWait(Driver.getDriver(), 10);
+	    wait16.until(ExpectedConditions.visibilityOf(Ecopath1));
+	    Ecopath1.click();
+	    HelperFunctions.staticWait(2);
+        selectButton.click();
+        test.info("Verified choosing supplemantary economy tags");
+        HelperFunctions.staticWait(3);
 	}
 	
 }
