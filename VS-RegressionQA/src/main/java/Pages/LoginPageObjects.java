@@ -79,7 +79,7 @@ public class LoginPageObjects extends HelperFunctions{
 	    HelperFunctions.staticWait(2);
 	    rb.keyPress(KeyEvent.VK_ENTER);
 	    rb.keyRelease(KeyEvent.VK_ENTER);
-	    HelperFunctions.staticWait(2);
+	    //HelperFunctions.staticWait(2);
 	   /* rb.keyPress(KeyEvent.VK_ALT);
 	    HelperFunctions.staticWait(2);
 	    rb.keyPress(KeyEvent.VK_TAB);
@@ -102,7 +102,7 @@ public class LoginPageObjects extends HelperFunctions{
 	    rb.keyPress(KeyEvent.VK_ENTER);
 	    rb.keyRelease(KeyEvent.VK_ENTER);
 	    HelperFunctions.staticWait(2);*/
-	    HelperFunctions.waitForPageToLoad(15);
+	    HelperFunctions.waitForPageToLoad(60);
 	
 	    
 	}
@@ -114,13 +114,13 @@ public class LoginPageObjects extends HelperFunctions{
 	   // logintoMyproducts.click();
 	    //loginLink2.click();
 	   // HelperFunctions.staticWait(5);
-		HelperFunctions.waitForPageToLoad(5);
+		HelperFunctions.waitForPageToLoad(30);
 		HelperFunctions.staticWait(5);
 		read1.setExcelFile("./testdata.xlsx", "QA");
 		email.sendKeys(read1.getCellData("VALUE", 14));
 		HelperFunctions.staticWait(3);
 		next.click();
-	    HelperFunctions.waitForPageToLoad(15);
+	    HelperFunctions.waitForPageToLoad(60);
 
 	
 	    

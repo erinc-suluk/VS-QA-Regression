@@ -236,7 +236,7 @@ public class AuthoringPage extends HelperFunctions {
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 	    wait.until(ExpectedConditions.visibilityOf(headerEdit));
 	    headerEdit.click();
-	    HelperFunctions.staticWait(3);
+	    wait.until(ExpectedConditions.visibilityOf(configure));
 	    configure.click();
 	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait1.until(ExpectedConditions.visibilityOf(quickDescField1));
@@ -289,7 +289,7 @@ public class AuthoringPage extends HelperFunctions {
 	    editButton.click();
 	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 	    js.executeScript("arguments[0].click();", mightLikeEdit);
-	    HelperFunctions.staticWait(2);
+	    wait.until(ExpectedConditions.visibilityOf(configure));
 	    configure.click();
 	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait1.until(ExpectedConditions.visibilityOf(mightLikeQuote));
@@ -313,7 +313,7 @@ public class AuthoringPage extends HelperFunctions {
 	    editButton.click();
 	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 	    js.executeScript("arguments[0].click();", top10Edit);
-	    HelperFunctions.staticWait(2);
+	    wait.until(ExpectedConditions.visibilityOf(configure));
 	    configure.click();
 	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait1.until(ExpectedConditions.visibilityOf(noResultTab));
@@ -360,6 +360,7 @@ public class AuthoringPage extends HelperFunctions {
 	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait2.until(ExpectedConditions.visibilityOf(contentTemplate));
 	    contentTemplate.click();
+	    HelperFunctions.staticWait(2);
 	    nextButton.click();
 	    WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 15);
 	    wait3.until(ExpectedConditions.visibilityOf(titleArea));
@@ -373,6 +374,7 @@ public class AuthoringPage extends HelperFunctions {
 	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait4.until(ExpectedConditions.visibilityOf(ghostTemplate));
 	    ghostTemplate.click();
+	    HelperFunctions.staticWait(2);
 	    nextButton.click();
 	    WebDriverWait wait5 = new WebDriverWait(Driver.getDriver(), 15);
 	    wait5.until(ExpectedConditions.visibilityOf(titleArea));

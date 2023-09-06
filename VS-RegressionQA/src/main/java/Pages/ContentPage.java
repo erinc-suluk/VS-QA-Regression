@@ -2237,7 +2237,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    Assert.assertTrue(firstAssetShare.isDisplayed());
 	    
 	    firstAssetShare.click();
-	    HelperFunctions.staticWait(2);
+	    //HelperFunctions.staticWait(2);
 	    test.info("Wait for share modal page is visible");
 	    WebDriverWait wait5 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait5.until(ExpectedConditions.visibilityOf(closeShareModal));
@@ -2249,7 +2249,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    test.info("Verify that share Email is displayed");
 	    HelperFunctions.staticWait(3);
 	    copyLink.click();
-	    HelperFunctions.staticWait(2);
+	    //HelperFunctions.staticWait(2);
 	    test.info("Wait for the 'Link copied!' confirmation to be visible");
 	    WebDriverWait wait6 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait6.until(ExpectedConditions.visibilityOf(copiedLink));
