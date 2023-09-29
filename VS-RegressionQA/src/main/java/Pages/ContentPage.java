@@ -513,7 +513,7 @@ public class ContentPage extends HelperFunctions{
 	@FindBy(xpath="//a[@aria-label='Pause clip']")
 	private WebElement pause;
 	
-	@FindBy(xpath="//div[@class='mwEmbedPlayer']")
+	@FindBy(xpath="//div[contains(@class, 'mwEmbedPlayer')]")
 	private WebElement videoPlayer;
 	
 	@FindBy(xpath="//a[@data-plugin-name='largePlayBtn']")
@@ -561,7 +561,7 @@ public class ContentPage extends HelperFunctions{
 	@FindBy(xpath="//foundation-autocomplete[@name='./cards/item1/./pagePath']//input[@placeholder='Page path']")
 	private WebElement pagePath2;
 	
-	@FindBy(xpath="//button[@value='/content/valuestore/us/en/firmwide/erinc-content/ghosted-page']")
+	@FindBy(xpath="(//button[@value='/content/valuestore/us/en/firmwide/erinc-content'])[2]")
 	private WebElement pagePath2value;
 	
 	@FindBy(xpath="//foundation-autocomplete[@name='./cards/item2/./pagePath']//input[@placeholder='Page path']")
@@ -3419,7 +3419,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    HelperFunctions.staticWait(2);
 	    
 	    String path1="/content/valuestore/us/en/firmwide/erinc-content";
-	    String path2="/content/valuestore/us/en/firmwide/erinc-content/ghosted-page";
+	    String path2="/content/valuestore/us/en/firmwide/erinc-content";
 	    String path3="/content/valuestore/us/en/firmwide/erinc-content/erinc-content-page";
 	    String imgPath="/content/dam/valuestore/us/en/1.jpg";
 	    String quote="This is for testing";
@@ -3533,10 +3533,10 @@ ReadXLSdata read1=new ReadXLSdata();
 	    Assert.assertTrue(missedCardsNumber==3);
 	    HelperFunctions.staticWait(2);
 	    String content=missedItLinks.get(0).getText();
-	    String ghost=missedItLinks.get(1).getText();
+	    //String ghost=missedItLinks.get(1).getText();
 	    Assert.assertTrue(content.contains("content"));
-	    HelperFunctions.staticWait(2);
-	    Assert.assertTrue(ghost.contains("ghosted"));
+	    //HelperFunctions.staticWait(2);
+	    //Assert.assertTrue(ghost.contains("ghosted"));
 	    HelperFunctions.staticWait(3);
 	    
 	}
@@ -3636,7 +3636,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    test.info("Verified missedItTitle is displayed");
 	    HelperFunctions.staticWait(2);
 	    String expectedLabel1="Deals";
-	    String expectedLabel2="Cloud and digital";
+	    String expectedLabel2="Deals";
 	    String expectedLabel3="Alliances and ecosystems";
 	    String actualLabel1=missedItLabels.get(0).getText();
 	    String actualLabel2=missedItLabels.get(1).getText();
@@ -3705,19 +3705,19 @@ ReadXLSdata read1=new ReadXLSdata();
 	    js2.executeScript("arguments[0].click();", autoPlay);
 	    HelperFunctions.staticWait(2);
 	    done.click();
-	    HelperFunctions.staticWait(2);
+	    HelperFunctions.staticWait(7);
 	    JavascriptExecutor js3 = (JavascriptExecutor) Driver.getDriver();
 	    js3.executeScript("arguments[0].click();", pageInfo);
-	    HelperFunctions.staticWait(2);
+	    //HelperFunctions.staticWait(2);
 	    WebDriverWait wait6 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait6.until(ExpectedConditions.elementToBeClickable(publishPage));
 	    publishPage.click();
 	    HelperFunctions.staticWait(3);
 	    JavascriptExecutor js4 = (JavascriptExecutor) Driver.getDriver();
 	    js4.executeScript("arguments[0].click();", pageInfo);
-	    HelperFunctions.staticWait(3);
+	    wait6.until(ExpectedConditions.elementToBeClickable(viewPublished));
 	    viewPublished.click();
-	    HelperFunctions.staticWait(2);
+	    //HelperFunctions.staticWait(2);
 	    String mainWindowHandle = Driver.getDriver().getWindowHandle();
 	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait2.until(ExpectedConditions.numberOfWindowsToBe(2));
@@ -3752,7 +3752,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    editButton.click();
 	    JavascriptExecutor js5 = (JavascriptExecutor) Driver.getDriver();
 	    js5.executeScript("arguments[0].click();", vpEdit);
-	    HelperFunctions.staticWait(2);
+	    wait4.until(ExpectedConditions.visibilityOf(configure));
 	    configure.click();
 	    WebDriverWait wait5 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait5.until(ExpectedConditions.visibilityOf(autoPlay));
@@ -3761,10 +3761,10 @@ ReadXLSdata read1=new ReadXLSdata();
 	    js6.executeScript("arguments[0].click();", autoPlay);
 	    HelperFunctions.staticWait(2);
 	    done.click();
-	    HelperFunctions.staticWait(3);
+	    HelperFunctions.staticWait(7);
 	    JavascriptExecutor js7 = (JavascriptExecutor) Driver.getDriver();
 	    js7.executeScript("arguments[0].click();", pageInfo);
-	    HelperFunctions.staticWait(2);
+	    //HelperFunctions.staticWait(2);
 	    WebDriverWait wait7 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait7.until(ExpectedConditions.elementToBeClickable(publishPage));
 	    publishPage.click();

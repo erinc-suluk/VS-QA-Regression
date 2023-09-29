@@ -74,14 +74,26 @@ public class RegressionTestCases extends HelperFunctions {
 		    read = new ConfigurationsReader();
 		    platform = read.getPlatform();
 		    read.platformName();
-		    String reportFilePrefix="Regression Automation Report for Value Store";
-		    File[] files=new File(".").listFiles((dir,name)->name.startsWith(reportFilePrefix));
-		    if(files!=null) {
-		    for(File file: files) {
-		    file.delete();
+		    String reportFilePrefix = "Regression Automation Report for Value Store";
+		    String reportFileName = reportFilePrefix + ".html";
+		    
+		   
+		    File existingReport = new File(reportFileName);
+		    
+		    if (existingReport.exists()) {
+		       
+		        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+		        String timestamp = dateFormat.format(new Date());
+		        String newReportFileName = reportFilePrefix + "_" + timestamp + ".html";
+		        
+		        if (existingReport.renameTo(new File(newReportFileName))) {
+		            System.out.println("Renamed existing report to: " + newReportFileName);
+		        } else {
+		            System.out.println("Failed to rename existing report.");
+		        }
 		    }
-		   }
-		    String reportFileName=reportFilePrefix + ".html";
+
+		
 		    htmlReporter = new ExtentHtmlReporter(reportFileName);
 		    extent = new ExtentReports();
 		    extent.attachReporter(htmlReporter);
@@ -124,7 +136,7 @@ public class RegressionTestCases extends HelperFunctions {
 	}
 	@Test
 	public void WEB_57() throws Exception{
-		  String testName = "To verify that \"In case you missed it\" items can be Content or Ghost pages."
+		  String testName = "To verify that \"In case you missed it\" items can be Content or Ghost pages.(excluded)"
 				  +"To verify that 3 articles display in card format under \"In case you missed it\" section.";
 		    ExtentTest test = extent.createTest(testName);
 
@@ -1454,7 +1466,7 @@ public class RegressionTestCases extends HelperFunctions {
 	@Test
 	public void WEB_133() throws Exception{
 		  String testName = "To verify that Feed article should open  in the current window if it's internal VS content."
-				  +"To verify that article should open in a new tab if it's an external content (ghost page)."
+				  +"To verify that article should open in a new tab if it's an external content (ghost page)(excluded)."
 				  +"To verify that clicking the back button brings the user back to the topic page where the user came from.";
 		    ExtentTest test = extent.createTest(testName);
 

@@ -1587,7 +1587,7 @@ public class HomePage extends HelperFunctions {
 	    searchButton.click();
 	    HelperFunctions.staticWait(2);
 	    searchField.click();
-	    HelperFunctions.staticWait(2);
+	    //HelperFunctions.staticWait(2);
 	    test.info("Wait for trending search visibility");
 	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait2.until(ExpectedConditions.visibilityOf(trendingSearch));
@@ -1617,7 +1617,7 @@ public class HomePage extends HelperFunctions {
 	    searchField2.click();
 	    //HelperFunctions.staticWait(2);
 	    test.info("Wait for trending search visibility");
-	    WebDriverWait wait6 = new WebDriverWait(Driver.getDriver(), 10);
+	    WebDriverWait wait6 = new WebDriverWait(Driver.getDriver(), 30);
 	    wait6.until(ExpectedConditions.visibilityOf(trendingSearch));
 	    Assert.assertTrue(trendingSearch.isDisplayed());
 	    HelperFunctions.staticWait(2);

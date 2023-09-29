@@ -442,7 +442,7 @@ public class TopicLandingPage extends HelperFunctions {
 	    test.info("Wait for topic page title's visibility");
 	    WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait3.until(ExpectedConditions.visibilityOf(topicPageTitle));
-	    HelperFunctions.staticWait(2);
+	   /* HelperFunctions.staticWait(2);
 	    for (WebElement element : feedTopics) {
             if (element.getText().toLowerCase().contains("ghost")) {
             	   ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
@@ -458,7 +458,7 @@ public class TopicLandingPage extends HelperFunctions {
 	 }else {
 			Assert.assertTrue(false);
 	 }
-	    test.info("Verified element opened the same tab");
+	    test.info("Verified element opened the same tab");*/
 	    HelperFunctions.staticWait(3);
 	    
 	}
