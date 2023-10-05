@@ -548,7 +548,7 @@ public class RegressionTestCases extends HelperFunctions {
 	}
 	@Test
 	public void WEB_79() throws Exception{
-		  String testName = "Verify that, system should display 10 results per page.";
+		  String testName = "Verify that, system should display 15 results per page.";
 		    ExtentTest test = extent.createTest(testName);
 
 		    try {
