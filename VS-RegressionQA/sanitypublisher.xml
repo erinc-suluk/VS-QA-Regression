@@ -87,7 +87,7 @@
        <include name="WEB_76"/>
        <include name="WEB_77"/>
        <include name="WEB_78"/>
-       <exclude name="WEB_79"/>
+       <include name="WEB_79"/>
        <include name="WEB_80"/>
        <exclude name="WEB_81"/>
        <include name="WEB_82"/>

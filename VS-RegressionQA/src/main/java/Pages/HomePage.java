@@ -415,6 +415,9 @@ public class HomePage extends HelperFunctions {
 	@FindBy(xpath="//span[@class='vs-header__favorites']")
 	private static List<WebElement> favIcon2;
 	
+	@FindBy(xpath="//a[contains(@class, 'vs-search__figure-heading')]")
+	private static List<WebElement> searchItems3;
+	
 	
 	ReadXLSdata read1=new ReadXLSdata();
 	
@@ -2809,10 +2812,10 @@ public class HomePage extends HelperFunctions {
 	    HelperFunctions.staticWait(3);
 	    test.info("Getting search item's size");
 	    int moreExplorerItemsSize = searchItems2.size();
-	    int searchItemsSize = searchItems1.size();
+	    int searchItemsSize = searchItems3.size();
 	    int totalSize = moreExplorerItemsSize + searchItemsSize;
-	    assert totalSize == 10 : "Total number of elements is not equal to 10";
-	    test.info("Verified Total number of elements is equal to 10");
+	    assert totalSize == 15 : "Total number of elements is not equal to 15";
+	    test.info("Verified Total number of elements is equal to 15");
 	    HelperFunctions.staticWait(3);
 	    HelperFunctions.scrollToElement(pagination);
 	    test.info("Scroll to pagination");
@@ -2820,8 +2823,8 @@ public class HomePage extends HelperFunctions {
 	    nextPage.click();
 	    test.info("Wait for page to load");
 	    HelperFunctions.waitForPageToLoad(30);
-	    assert totalSize == 10 : "Total number of elements is not equal to 10";
-	    test.info("Verified Total number of elements is equal to 10 on second page");
+	    assert totalSize == 15 : "Total number of elements is not equal to 15";
+	    test.info("Verified Total number of elements is equal to 15 on second page");
 	    HelperFunctions.staticWait(3);
 	}
 	public void setResultCount(ExtentTest test) throws Exception {
