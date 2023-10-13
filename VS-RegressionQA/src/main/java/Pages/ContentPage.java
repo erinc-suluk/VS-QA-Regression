@@ -4491,7 +4491,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    HelperFunctions.staticWait(2);
 	    externalDesc.clear();
 	    HelperFunctions.staticWait(2);
-	    String actualDesc="Testing";
+	    String actualDesc="Automation Testing";
 	    String mockDesc="Demo";
 	    externalDesc.sendKeys(mockDesc);
 	    HelperFunctions.staticWait(2);
