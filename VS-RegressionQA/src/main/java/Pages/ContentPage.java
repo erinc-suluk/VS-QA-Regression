@@ -4466,7 +4466,6 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setExternalPageAuth(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
-	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
         test.info("Wait for page to load and page info");
 	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 30);
 	    wait2.until(ExpectedConditions.visibilityOf(pageInfo));
@@ -4510,14 +4509,15 @@ ReadXLSdata read1=new ReadXLSdata();
 	    test.info("Wait for page to load and click on page info");
 	    HelperFunctions.waitForPageToLoad(60);
 	    wait2.until(ExpectedConditions.visibilityOf(pageInfo));
-	    pageInfo.click();
+	    js.executeScript("arguments[0].click();", pageInfo);
 	    test.info("Clicking on view as publish");
 	    wait2.until(ExpectedConditions.visibilityOf(viewasPublish));
 	    viewasPublish.click();
+	    HelperFunctions.staticWait(5);
 	    test.info("Switching tab");
         ArrayList<String> tabs=new ArrayList<String>(Driver.getDriver().getWindowHandles());
 		Driver.getDriver().switchTo().window(tabs.get(1));
-        HelperFunctions.waitForPageToLoad(60);
+		HelperFunctions.staticWait(15);
         String currentUrl=Driver.getDriver().getCurrentUrl();
         test.info("Checking the current url value has changed");
         Assert.assertTrue(currentUrl.contains("google"));
@@ -4556,6 +4556,12 @@ ReadXLSdata read1=new ReadXLSdata();
 	    saveClose.click();
 	    test.info("Wait for page to load and click on page info");
 	    HelperFunctions.waitForPageToLoad(60);
+	    HelperFunctions.staticWait(3);
+	    js.executeScript("arguments[0].click();", pageInfo);
+	    //HelperFunctions.staticWait(2);
+	    WebDriverWait wait6 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait6.until(ExpectedConditions.elementToBeClickable(publishPage));
+	    publishPage.click();
 	    HelperFunctions.staticWait(3);
 	}
 	
