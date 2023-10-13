@@ -678,6 +678,15 @@ public class ContentPage extends HelperFunctions{
 	@FindBy(xpath="//coral-columnview-item[contains(@title, 'Chief')]//coral-columnview-item-thumbnail[@role='presentation']")
 	private WebElement Ecopath1;
 	
+	@FindBy(xpath="//textarea[@name='./jcr:description']")
+	private WebElement externalDesc;
+	
+	@FindBy(xpath="//input[@name='./externalUrl']")
+	private WebElement externalUrl;
+	
+	@FindBy(xpath="//button[@title='View as Published']")
+	private WebElement viewasPublish;
+	
 	
 	
 ReadXLSdata read1=new ReadXLSdata();
@@ -4454,6 +4463,100 @@ ReadXLSdata read1=new ReadXLSdata();
         selectButton.click();
         test.info("Verified choosing supplemantary economy tags");
         HelperFunctions.staticWait(3);
+	}
+	public void setExternalPageAuth(ExtentTest test) throws Exception {
+		read1.setExcelFile("./testdata.xlsx", "QA");
+	    Driver.getDriver().get(read1.getCellData("VALUE", 2));
+        test.info("Wait for page to load and page info");
+	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 30);
+	    wait2.until(ExpectedConditions.visibilityOf(pageInfo));
+	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+	    js.executeScript("arguments[0].click();", pageInfo);
+	    test.info("Clicking on open properties");
+	    wait2.until(ExpectedConditions.visibilityOf(openPro));
+	    openPro.click();
+	    test.info("Wait for page to load");
+	    HelperFunctions.waitForPageToLoad(60);
+	    HelperFunctions.staticWait(3);
+	    test.info("Enter new title value");
+	    titleField.click();
+	    HelperFunctions.staticWait(2);
+	    titleField.clear();
+	    HelperFunctions.staticWait(2);
+	    String actualTitle="Automation External Page";
+	    String mockTitle="Automation External Page2";
+	    titleField.sendKeys(mockTitle);
+	    HelperFunctions.staticWait(2);
+	    test.info("Enter new description value");
+	    externalDesc.click();
+	    HelperFunctions.staticWait(2);
+	    externalDesc.clear();
+	    HelperFunctions.staticWait(2);
+	    String actualDesc="Testing";
+	    String mockDesc="Demo";
+	    externalDesc.sendKeys(mockDesc);
+	    HelperFunctions.staticWait(2);
+	    test.info("Enter new external url");
+	    js.executeScript("arguments[0].click();", externalUrl);
+	    HelperFunctions.staticWait(2);
+	    externalUrl.clear();
+	    HelperFunctions.staticWait(2);
+	    String actualUrl="https://www.pwc.com";
+	    String mockUrl="https://www.google.com";
+	    externalUrl.sendKeys(mockUrl);
+	    HelperFunctions.staticWait(2);
+	    test.info("Clicking on save and close");
+	    saveClose.click();
+	    test.info("Wait for page to load and click on page info");
+	    HelperFunctions.waitForPageToLoad(60);
+	    wait2.until(ExpectedConditions.visibilityOf(pageInfo));
+	    pageInfo.click();
+	    test.info("Clicking on view as publish");
+	    wait2.until(ExpectedConditions.visibilityOf(viewasPublish));
+	    viewasPublish.click();
+	    test.info("Switching tab");
+        ArrayList<String> tabs=new ArrayList<String>(Driver.getDriver().getWindowHandles());
+		Driver.getDriver().switchTo().window(tabs.get(1));
+        HelperFunctions.waitForPageToLoad(60);
+        String currentUrl=Driver.getDriver().getCurrentUrl();
+        test.info("Checking the current url value has changed");
+        Assert.assertTrue(currentUrl.contains("google"));
+        test.info("Verified external link has changed");
+        Driver.getDriver().switchTo().window(tabs.get(0));
+        wait2.until(ExpectedConditions.visibilityOf(pageInfo));
+        js.executeScript("arguments[0].click();", pageInfo);
+	    test.info("Clicking on open properties");
+	    wait2.until(ExpectedConditions.visibilityOf(openPro));
+	    openPro.click();
+	    test.info("Wait for page to load");
+	    HelperFunctions.waitForPageToLoad(60);
+	    HelperFunctions.staticWait(3);
+	    test.info("Enter previous title value");
+	    titleField.click();
+	    HelperFunctions.staticWait(2);
+	    titleField.clear();
+	    HelperFunctions.staticWait(2);
+	    titleField.sendKeys(actualTitle);
+	    HelperFunctions.staticWait(2);
+	    test.info("Enter previous description value");
+	    externalDesc.click();
+	    HelperFunctions.staticWait(2);
+	    externalDesc.clear();
+	    HelperFunctions.staticWait(2);
+	    externalDesc.sendKeys(actualDesc);
+	    HelperFunctions.staticWait(2);
+	    test.info("Enter previous external url");
+	    js.executeScript("arguments[0].click();", externalUrl);
+	    HelperFunctions.staticWait(2);
+	    externalUrl.clear();
+	    HelperFunctions.staticWait(2);
+	    externalUrl.sendKeys(actualUrl);
+	    HelperFunctions.staticWait(2);
+	    test.info("Clicking on save and close");
+	    saveClose.click();
+	    test.info("Wait for page to load and click on page info");
+	    HelperFunctions.waitForPageToLoad(60);
+	    HelperFunctions.staticWait(3);
 	}
 	
 }
