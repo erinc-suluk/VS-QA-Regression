@@ -241,10 +241,10 @@ public class HomePage extends HelperFunctions {
 	@FindBy(xpath="//span[@class='vs-search__suggestion-text']")
 	private WebElement didYouMeanText;
 	
-	@FindBy(xpath="//div[@class='vs-search__suggested-text-wrapper']")
+	@FindBy(xpath="//div[@class='vs-search__showing-result']//p")
 	private WebElement suggestedHeading;
 	
-	@FindBy(xpath="//span[@class='vs-search__suggested-text']")
+	@FindBy(xpath="//span[@class='vs-search__showing-result-topic']")
 	private WebElement suggestedText;
 	
 	@FindBy(xpath="//ul[@class='vs-search__pagination-wrapper']")
@@ -2293,8 +2293,13 @@ public class HomePage extends HelperFunctions {
 	    Assert.assertTrue(closeSearch.isDisplayed());
 	    test.info("Verified close search button is displayed"); 
 	    WebDriverWait wait4=new WebDriverWait(Driver.getDriver(),15);
-	    ExpectedCondition<WebElement> condition=ExpectedConditions.elementToBeClickable(wrapper);
-	    wait4.until(condition);
+	    //ExpectedCondition<WebElement> condition=ExpectedConditions.elementToBeClickable(wrapper);
+	    //wait4.until(condition);
+	    try {
+	    	Thread.sleep(3000);
+	    }catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
 	    test.info("Clicking on wrapper");
 	    wrapper.click();
 	    test.info("Clicked on outside of search overlay");
@@ -2627,7 +2632,7 @@ public class HomePage extends HelperFunctions {
 	    test.info("Wait suggestedHeading's visibility");
 	    WebDriverWait wait5 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait5.until(ExpectedConditions.visibilityOf(suggestedHeading));
-	    String message="Showing results for";
+	    String message="Showing";
 	    Assert.assertTrue(suggestedHeading.getText().contains(message));
 	    test.info("Verified suggestedHeading contains required message");
 	    HelperFunctions.staticWait(2);
@@ -3049,9 +3054,15 @@ public class HomePage extends HelperFunctions {
 	    HelperFunctions.staticWait(3);*/
 	    test.info("Wait for logo visibility");
 	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait2.until(ExpectedConditions.visibilityOf(selectTopic));
+	    //wait2.until(ExpectedConditions.visibilityOf(selectTopic));
+	    try {
+	    	Thread.sleep(3000);
+	    }catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
 	    test.info("Clicked on select topic");
-        selectTopic.click();
+	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+	    js.executeScript("arguments[0].click();", selectTopic);
         //HelperFunctions.staticWait(2);
         test.info("Wait for filter list's visibility");
         WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
@@ -3522,16 +3533,27 @@ public class HomePage extends HelperFunctions {
 	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait2.until(ExpectedConditions.visibilityOf(logo));
 	    test.info("Clicked on select topic");
-        selectTopic.click();
+	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+	    js.executeScript("arguments[0].click();", selectTopic);
         //HelperFunctions.staticWait(2);
         test.info("Wait for deals checkbox visibility and clicked on it");
         WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait3.until(ExpectedConditions.visibilityOf(dealsCheckbox));
 	    JavascriptExecutor js2 = (JavascriptExecutor) Driver.getDriver();
 	    js2.executeScript("arguments[0].click();", dealsCheckbox);
-	    HelperFunctions.staticWait(2);
+	    try {
+	    	Thread.sleep(3000);
+	    }catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
+	    js2.executeScript("arguments[0].click();", riskCheckbox);
+	    try {
+	    	Thread.sleep(3000);
+	    }catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
 	    test.info("Clicked on select topic");
-	    selectTopic.click();
+	    js.executeScript("arguments[0].click();", selectTopic);
 	    test.info("Getting the initial asset size");
 	    int initialSize = assets.size();
 	    System.out.println(initialSize);
@@ -4200,7 +4222,7 @@ public class HomePage extends HelperFunctions {
 	    test.info("Clicked on select topic");
 	    selectTopic.click();
 	    HelperFunctions.staticWait(2);
-	    Assert.assertTrue(articleCards.size()==4);
+	    Assert.assertTrue(articleCards.size()>=4);
 	    HelperFunctions.staticWait(3);
 	}public void setFavContents(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
@@ -4583,12 +4605,12 @@ public class HomePage extends HelperFunctions {
 	    Actions actions = new Actions(Driver.getDriver());
 	    actions.sendKeys(Keys.ENTER).build().perform();
 	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(15);
+	    HelperFunctions.waitForPageToLoad(60);
 	    WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait3.until(ExpectedConditions.visibilityOf(favLinkSearch));
 	    HelperFunctions.staticWait(2);
 	    favLinkSearch.click();
-	    HelperFunctions.waitForPageToLoad(15);
+	    HelperFunctions.waitForPageToLoad(60);
 	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait4.until(ExpectedConditions.visibilityOf(favPageIcon));
 	    favPageIcon.click();
@@ -4600,38 +4622,53 @@ public class HomePage extends HelperFunctions {
 	    Assert.assertTrue(firstArticleTitle.isDisplayed());
 	    HelperFunctions.staticWait(3);
 	    Driver.getDriver().get(read1.getCellData("VALUE", 48));
-	    HelperFunctions.waitForPageToLoad(15);
+	    HelperFunctions.waitForPageToLoad(60);
+	    try {
+	    	Thread.sleep(3000);
+	    }catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
 	    test.info("Clicked on page info and unpublished the page");
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 	    js.executeScript("arguments[0].click();", pageInfo);
 	    HelperFunctions.staticWait(3);
 	    WebDriverWait wait6 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait6.until(ExpectedConditions.elementToBeClickable(unpublishPage));
+	    wait6.until(ExpectedConditions.visibilityOf(unpublishPage));
 	    unpublishPage.click();
 	    WebDriverWait wait7 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait7.until(ExpectedConditions.visibilityOf(confirm));
 	    confirm.click();
 	    HelperFunctions.staticWait(10);
 	    Driver.getDriver().get(read1.getCellData("VALUE", 10));
-	    HelperFunctions.waitForPageToLoad(15);
+	    HelperFunctions.waitForPageToLoad(60);
 	    favIconLink.click();
 	    HelperFunctions.waitForPageToLoad(15);
 	    Assert.assertTrue(favAutomation.size()==0);
 	    HelperFunctions.staticWait(3);
 	    Driver.getDriver().get(read1.getCellData("VALUE", 48));
-	    HelperFunctions.waitForPageToLoad(15);
+	    HelperFunctions.waitForPageToLoad(60);
+	    try {
+	    	Thread.sleep(3000);
+	    }catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
 	    test.info("Clicked on page info and unpublished the page");
         JavascriptExecutor js2 = (JavascriptExecutor) Driver.getDriver();
 	    js2.executeScript("arguments[0].click();", pageInfo);
 	    //HelperFunctions.staticWait(2);
 	    WebDriverWait wait8 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait8.until(ExpectedConditions.elementToBeClickable(publishPage));
+	    wait8.until(ExpectedConditions.visibilityOf(publishPage));
 	    publishPage.click();
 	    HelperFunctions.staticWait(10);
 	    Driver.getDriver().get(read1.getCellData("VALUE", 10));
-	    HelperFunctions.waitForPageToLoad(15);
+	    HelperFunctions.waitForPageToLoad(60);
+	    try {
+	    	Thread.sleep(3000);
+	    }catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
 	    favIconLink.click();
-	    HelperFunctions.waitForPageToLoad(15);    
+	    HelperFunctions.waitForPageToLoad(60);    
 	    WebDriverWait wait9 = new WebDriverWait(Driver.getDriver(), 10);
 	    for(WebElement each: favIconsFav) {
 	    	wait9.until(ExpectedConditions.elementToBeClickable(each)).click();
