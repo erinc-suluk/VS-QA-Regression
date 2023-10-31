@@ -1187,7 +1187,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait1.until(ExpectedConditions.visibilityOf(proTab));
 	    proTab.click();
-	    HelperFunctions.staticWait(3);
+	    wait1.until(ExpectedConditions.visibilityOf(singleCheckbox));
 	    test.info("Check if single checkbox is selected");
 	    Assert.assertTrue(singleCheckbox.isSelected());
 	    HelperFunctions.staticWait(2);
