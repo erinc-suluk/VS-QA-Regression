@@ -2263,7 +2263,7 @@ public class RegressionTestCases extends HelperFunctions {
 
 		    try {
 		        Driver.getDriver().get(read1.getCellData("VALUE", 49));
-		        //lpo.setLogin4();
+		        lpo.setLogin4();
 		        cp.setHideSiteSearch(test);
 		        test.pass("WEB_175 passed");  
 		    } catch (Exception e) {

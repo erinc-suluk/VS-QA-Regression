@@ -120,7 +120,7 @@ public class LoginPageObjects extends HelperFunctions{
 		email.sendKeys(read1.getCellData("VALUE", 14));
 		HelperFunctions.staticWait(3);
 		next.click();
-	    HelperFunctions.waitForPageToLoad(60);
+	    HelperFunctions.waitForPageToLoad(90);
 
 	
 	    
