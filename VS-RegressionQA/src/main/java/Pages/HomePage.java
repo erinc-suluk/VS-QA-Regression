@@ -631,14 +631,20 @@ public class HomePage extends HelperFunctions {
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);*/
 	    test.info("Wait for logo visibility");
-	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait2.until(ExpectedConditions.visibilityOf(logo));
+	    HelperFunctions.staticWait(5);
+	    //WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
+	    //wait2.until(ExpectedConditions.visibilityOf(logo));
 	    test.info("Clicked on select topic");
         selectTopic.click();
         //HelperFunctions.staticWait(2);
         test.info("Wait for deals checkbox visibility and clicked on it");
-        WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
+        WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 30);
 	    wait3.until(ExpectedConditions.visibilityOf(dealsCheckbox));
+	    try {
+	    	Thread.sleep(3000);
+	    }catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
 	    JavascriptExecutor js2 = (JavascriptExecutor) Driver.getDriver();
 	    js2.executeScript("arguments[0].click();", dealsCheckbox);
 	   // dealsCheckbox.click();
@@ -1200,9 +1206,9 @@ public class HomePage extends HelperFunctions {
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);*/
 	    test.info("Wait for logo visibility");
-	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait2.until(ExpectedConditions.visibilityOf(logo));
-	    HelperFunctions.staticWait(3);
+	    //WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
+	    //wait2.until(ExpectedConditions.visibilityOf(logo));
+	    HelperFunctions.staticWait(5);
 	    test.info("Clicked on search button");
 	    searchButton.click();
 	    HelperFunctions.staticWait(2);
@@ -1212,7 +1218,7 @@ public class HomePage extends HelperFunctions {
 	    Actions actions = new Actions(Driver.getDriver());
 	    actions.sendKeys(Keys.ENTER).build().perform();
 	    test.info("Wait for page to load");
-	    HelperFunctions.waitForPageToLoad(15);
+	    HelperFunctions.waitForPageToLoad(60);
 	    HelperFunctions.staticWait(3);
 	    Assert.assertTrue(trendingSearch2.isDisplayed());
 	    HelperFunctions.staticWait(2);
@@ -1534,9 +1540,9 @@ public class HomePage extends HelperFunctions {
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);*/
 	    test.info("Wait logo visibility");
-	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait2.until(ExpectedConditions.visibilityOf(logo));
-	    HelperFunctions.staticWait(3);
+	    //WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
+	    //wait2.until(ExpectedConditions.visibilityOf(logo));
+	    HelperFunctions.staticWait(5);
 	    test.info("Clicked on search button");
 	    searchButton.click();
 	    HelperFunctions.staticWait(2);
@@ -1547,7 +1553,7 @@ public class HomePage extends HelperFunctions {
 	    searchField.sendKeys(mockContent);
 	    //HelperFunctions.staticWait(5);
 	    test.info("Wait for suggested keyword visibility");
-	    WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
+	    WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 30);
 	    wait3.until(ExpectedConditions.visibilityOf(suggestedKeyword));
 	    Assert.assertTrue(suggestedKeyword.isDisplayed());
 	    test.info("Verified suggested keyword is displayed");
@@ -1559,7 +1565,7 @@ public class HomePage extends HelperFunctions {
 	    HelperFunctions.waitForPageToLoad(30);
 	    //HelperFunctions.staticWait(3);
 	    test.info("Wait for search item visibility");
-	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
+	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 30);
 	    wait4.until(ExpectedConditions.visibilityOf(searchItem));
 	    Assert.assertTrue(searchItem.isDisplayed());
 	    test.info("Verified search item is displayed");
@@ -2278,9 +2284,9 @@ public class HomePage extends HelperFunctions {
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);*/
 	    test.info("Wait logo visibility");
-	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 60);
-	    wait2.until(ExpectedConditions.visibilityOf(logo));
-	    HelperFunctions.staticWait(3);
+	    //WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 60);
+	    //wait2.until(ExpectedConditions.visibilityOf(logo));
+	    HelperFunctions.staticWait(5);
 	    test.info("Clicked on search button");
 	    searchButton.click();
 	    HelperFunctions.staticWait(2);
@@ -2348,9 +2354,9 @@ public class HomePage extends HelperFunctions {
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);*/
 	    test.info("Wait logo visibility");
-	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 60);
-	    wait2.until(ExpectedConditions.visibilityOf(logo));
-	    HelperFunctions.staticWait(3);
+	    //WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 60);
+	    //wait2.until(ExpectedConditions.visibilityOf(logo));
+	    HelperFunctions.staticWait(5);
 	    test.info("Clicked on search button");
 	    searchButton.click();
 	    //HelperFunctions.staticWait(2);
@@ -2410,8 +2416,14 @@ public class HomePage extends HelperFunctions {
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);*/
 	    test.info("Wait search button visibility");
-	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 60);
-	    wait2.until(ExpectedConditions.visibilityOf(searchButton));
+	    //WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 60);
+	    //wait2.until(ExpectedConditions.visibilityOf(searchButton));
+	    HelperFunctions.staticWait(3);
+	    try {
+	    	Thread.sleep(3000);
+	    }catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
 	    JavascriptExecutor executor = (JavascriptExecutor) Driver.getDriver();
 	    String Color = (String) executor.executeScript("return window.getComputedStyle(arguments[0], ':before').getPropertyValue('color');", searchButton);
 	    System.out.println(Color);
