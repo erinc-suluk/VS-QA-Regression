@@ -4530,12 +4530,14 @@ ReadXLSdata read1=new ReadXLSdata();
 	}
 	public void setHideSiteSearch(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
+		JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 		try {
-	    	Thread.sleep(10000);
+	    	Thread.sleep(7000);
 	    }catch(InterruptedException e) {
+	    
 	    	e.printStackTrace();
 	    }
-		JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+		
 		js.executeScript("arguments[0].click();", pageInfo);
 		try {
 	    	Thread.sleep(3000);

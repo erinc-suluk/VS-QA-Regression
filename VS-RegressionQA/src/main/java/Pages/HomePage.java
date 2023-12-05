@@ -256,7 +256,7 @@ public class HomePage extends HelperFunctions {
 	@FindBy(xpath="//li[@class='page__btn']")
 	private WebElement nextPage;
 	
-	@FindBy(xpath="//div[@class='vs-search__items']")
+	@FindBy(xpath="//div[contains(@class, 'vs-search__items')]")
 	private static List<WebElement> searchItems1;
 	
 	@FindBy(xpath="//div[@class='vs-search__more-explorer-item']")
@@ -3073,7 +3073,7 @@ public class HomePage extends HelperFunctions {
 	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 60);
 	    //wait2.until(ExpectedConditions.visibilityOf(selectTopic));
 	    try {
-	    	Thread.sleep(3000);
+	    	Thread.sleep(5000);
 	    }catch(InterruptedException e) {
 	    	e.printStackTrace();
 	    }
@@ -3169,9 +3169,9 @@ public class HomePage extends HelperFunctions {
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);*/
 	    test.info("Wait for logo visibility");
-	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 60);
-	    wait2.until(ExpectedConditions.visibilityOf(logo));
-	    HelperFunctions.staticWait(3);
+	    //WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 60);
+	    //wait2.until(ExpectedConditions.visibilityOf(logo));
+	    HelperFunctions.staticWait(7);
 	    test.info("Scroll to more to explore");
 	    HelperFunctions.scrollToElement(moretoExplore);
 	    HelperFunctions.staticWait(3);
@@ -3394,9 +3394,9 @@ public class HomePage extends HelperFunctions {
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);*/
 	    test.info("Wait for logo visibility");
-	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 60);
-	    wait2.until(ExpectedConditions.visibilityOf(logo));
-	    HelperFunctions.staticWait(3);
+	    //WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 60);
+	    //wait2.until(ExpectedConditions.visibilityOf(logo));
+	    HelperFunctions.staticWait(7);
 	    test.info("Scroll to also like title");
 	    HelperFunctions.scrollToElement(alsoLikeTitle);
 	    HelperFunctions.staticWait(3);
@@ -3477,9 +3477,9 @@ public class HomePage extends HelperFunctions {
 	    HelperFunctions.waitForPageToLoad(3);
 	    HelperFunctions.staticWait(3);*/
 	    test.info("Wait for logo visibility");
-	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 60);
-	    wait2.until(ExpectedConditions.visibilityOf(logo));
-	    HelperFunctions.staticWait(3);
+	    //WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 60);
+	    //wait2.until(ExpectedConditions.visibilityOf(logo));
+	    HelperFunctions.staticWait(7);
 	    test.info("Scroll to might also like title");
 	    HelperFunctions.scrollToElement(alsoLikeTitle);
 	    HelperFunctions.staticWait(3);
@@ -4714,9 +4714,9 @@ public class HomePage extends HelperFunctions {
 	public void setResentSearch(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
 	    test.info("Wait for logo visibility");
-	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 60);
-	    wait.until(ExpectedConditions.visibilityOf(logo));
-	    HelperFunctions.staticWait(3);
+	    //WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 60);
+	    //wait.until(ExpectedConditions.visibilityOf(logo));
+	    HelperFunctions.staticWait(7);
 	    test.info("Clicked on search button");
 	    searchButton.click();
 	    HelperFunctions.staticWait(3);
@@ -4730,17 +4730,19 @@ public class HomePage extends HelperFunctions {
 	    HelperFunctions.waitForPageToLoad(90);
 	    Driver.getDriver().navigate().refresh();
 	    HelperFunctions.waitForPageToLoad(90);
+	    HelperFunctions.staticWait(7);
 	    searchButton.click();
 	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait2.until(ExpectedConditions.visibilityOf(recentSearch));
 	    recentList.get(0).click();
 	    HelperFunctions.waitForPageToLoad(90);
+	    HelperFunctions.staticWait(7);
 	    WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 30);
 	    wait3.until(ExpectedConditions.visibilityOf(searchItems1.get(0)));
 	    //Assert.assertTrue(searchItems1.get(0).isDisplayed());
-	    //HelperFunctions.staticWait(3);
-	    WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 30);
-	    wait4.until(ExpectedConditions.visibilityOf(terriMenu));
+	    HelperFunctions.staticWait(3);
+	    //WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 30);
+	    //wait4.until(ExpectedConditions.visibilityOf(terriMenu));
 	    terriMenu.click();
 	    test.info("Clicked on territory menu");
 	    //HelperFunctions.staticWait(3);
@@ -4765,9 +4767,9 @@ public class HomePage extends HelperFunctions {
 	public void setDeleteNoResult(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
 	    test.info("Wait for logo visibility");
-	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 60);
-	    wait.until(ExpectedConditions.visibilityOf(logo));
-	    HelperFunctions.staticWait(3);
+	    //WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 60);
+	    //wait.until(ExpectedConditions.visibilityOf(logo));
+	    HelperFunctions.staticWait(7);
 	    test.info("Clicked on search button");
 	    searchButton.click();
 	    HelperFunctions.staticWait(3);
@@ -4812,11 +4814,11 @@ public class HomePage extends HelperFunctions {
 		read1.setExcelFile("./testdata.xlsx", "QA");
 	 
 	    test.info("Wait for logo visibility");
-	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
-	    wait2.until(ExpectedConditions.visibilityOf(logo));
+	    //WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 10);
+	    //wait2.until(ExpectedConditions.visibilityOf(logo));
 	    Assert.assertTrue(sectorButton.isDisplayed());
 	    test.info("Verified sector filter");
-	    HelperFunctions.staticWait(2);
+	    HelperFunctions.staticWait(7);
 	    topicButton.click();
 	    WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait3.until(ExpectedConditions.visibilityOf(dropdownMenu));
@@ -5025,9 +5027,9 @@ public class HomePage extends HelperFunctions {
 	public void setNoFavGlobal(ExtentTest test) throws Exception {
 		read1.setExcelFile("./testdata.xlsx", "QA");
 	    test.info("Wait for logo visibility");
-	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 60);
-	    wait2.until(ExpectedConditions.visibilityOf(logo));
-	    HelperFunctions.staticWait(3);
+	    //WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 60);
+	    //wait2.until(ExpectedConditions.visibilityOf(logo));
+	    HelperFunctions.staticWait(7);
 	    Assert.assertTrue(terriMenu.isDisplayed());
 	    test.info("Verified territory menu is displayed");
 	    HelperFunctions.staticWait(2);
