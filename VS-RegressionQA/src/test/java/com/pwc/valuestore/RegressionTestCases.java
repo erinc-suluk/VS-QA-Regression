@@ -2521,6 +2521,25 @@ public class RegressionTestCases extends HelperFunctions {
 		    }
 	}
 	
+	@Test
+	public void WEB_191() throws Exception{
+		  String testName = "To verify that after logging out, the user will be redirected back to the same page they were on before logging our, and re-authenticated into the Value Store";
+		    ExtentTest test = extent.createTest(testName);
+
+		    try {
+		        Driver.getDriver().get(read1.getCellData("VALUE", 10));
+		        lpo.setLogin4();
+		        hp.setLogoutOption(test);
+		        test.pass("WEB_69 passed");  
+		    } catch (Exception e) {
+		        String screenshotPath = takeScreenshot(testName);
+		        test.fail("Test failed: " + e.getMessage(), MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+		    }
+		    if (test.getModel().getStatus().toString().equalsIgnoreCase("fail")) {
+		        Assert.fail("Test case failed: " + testName);
+		    }
+	}
+	
 	
 	
 	

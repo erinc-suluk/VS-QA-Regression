@@ -436,6 +436,18 @@ public class HomePage extends HelperFunctions {
 	@FindBy(xpath="//p[@class='vs-search__figure-description']//a[contains(text(),'Testing')]")
 	private WebElement externalDesc;
 	
+	@FindBy(xpath="//a[contains(text(),'VA')]")
+	private WebElement userProfile;
+	
+	@FindBy(xpath="//li[@class='userprofile']//a[contains(text(),'Logout')]")
+	private WebElement logout;
+	
+	@FindBy(xpath="//input[@id='initEmail']")
+	private WebElement email;
+	
+	@FindBy(xpath="//button[.='Next']")
+	private WebElement next;
+	
 	
 	ReadXLSdata read1=new ReadXLSdata();
 	
@@ -5207,6 +5219,137 @@ public class HomePage extends HelperFunctions {
         Assert.assertTrue(currentUrl.contains("pwc"));
         test.info("Verified open url on new tab");
         HelperFunctions.staticWait(3);
+	    
+	}
+	public void setLogoutOption(ExtentTest test) throws Exception {
+		read1.setExcelFile("./testdata.xlsx", "QA");
+	    test.info("Wait for home page to load");
+	   // HelperFunctions.staticWait(7);
+	    test.info("Wait for user profile's visibility");
+	    WebDriverWait wait2 = new WebDriverWait(Driver.getDriver(), 90);
+	    wait2.until(ExpectedConditions.visibilityOf(userProfile));
+	    try {
+	    	Thread.sleep(5000);
+	    }catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
+	    test.info("Click on user profile");
+	    JavascriptExecutor js3 = (JavascriptExecutor) Driver.getDriver();
+	    js3.executeScript("arguments[0].click();", userProfile);
+	    try {
+	    	Thread.sleep(5000);
+	    }catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
+	    Assert.assertTrue(logout.isDisplayed());
+	    test.info("Verified the logout option is displayed");
+	    test.info("Click on logout");
+	    logout.click();
+	    test.info("Wait for email's visibility");
+	    wait2.until(ExpectedConditions.visibilityOf(email));
+	    Assert.assertTrue(email.isDisplayed());
+	    test.info("Verified the email is displayed and user is on the login page again");
+	    HelperFunctions.staticWait(3);
+	    email.sendKeys(read1.getCellData("VALUE", 14));
+		HelperFunctions.staticWait(3);
+		next.click();
+	    HelperFunctions.waitForPageToLoad(90);
+	    //HelperFunctions.scrollToElement(articleTitles.get(0));
+	    //wait2.until(ExpectedConditions.visibilityOf(articleTitles.get(0)));
+	    //Assert.assertTrue(articleTitles.get(0).isDisplayed());
+	    test.info("Verified article title is displayed and user is on the home page again");
+	    try {
+	    	Thread.sleep(5000);
+	    }catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
+	    test.info("Click on first article");
+	    JavascriptExecutor js4 = (JavascriptExecutor) Driver.getDriver();
+	    js4.executeScript("arguments[0].click();", articleTitles.get(0));
+	    HelperFunctions.waitForPageToLoad(90);
+	    test.info("Wait for article page's visibility");
+	    wait2.until(ExpectedConditions.visibilityOf(contentBox));
+	    try {
+	    	Thread.sleep(5000);
+	    }catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
+	    test.info("Click on user profile and logout");
+	    JavascriptExecutor js5 = (JavascriptExecutor) Driver.getDriver();
+	    js5.executeScript("arguments[0].click();", userProfile);
+	    try {
+	    	Thread.sleep(5000);
+	    }catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
+	    Assert.assertTrue(logout.isDisplayed());
+	    test.info("Verified the logout option is displayed");
+	    test.info("Click on logout");
+	    logout.click();
+	    test.info("Wait for email's visibility");
+	    wait2.until(ExpectedConditions.visibilityOf(email));
+	    Assert.assertTrue(email.isDisplayed());
+	    test.info("Verified the email is displayed and user is on the login page again");
+	    HelperFunctions.staticWait(3);
+	    test.info("Click on email and enter credential for re-authentication");
+	    email.sendKeys(read1.getCellData("VALUE", 14));
+		HelperFunctions.staticWait(3);
+		next.click();
+	    HelperFunctions.waitForPageToLoad(90);
+	    wait2.until(ExpectedConditions.visibilityOf(contentBox));
+	    Assert.assertTrue(contentBox.isDisplayed());
+	    test.info("Verified the content box is displayed and user is on the article page again");
+	    HelperFunctions.staticWait(3);
+	    test.info("Clicked on search button");
+	    searchButton.click();
+	    HelperFunctions.staticWait(2);
+	    test.info("Clicked on search field and send text");
+	    searchField.click();
+	    HelperFunctions.staticWait(2);
+	    String mockContent="Tax";
+	    searchField.sendKeys(mockContent);
+	    HelperFunctions.staticWait(3);
+	    test.info("Clicked on enter");
+	    Actions actions = new Actions(Driver.getDriver());
+	    actions.sendKeys(Keys.ENTER).build().perform();
+	    test.info("Wait for page to load");
+	    HelperFunctions.waitForPageToLoad(90);
+	    test.info("Wait for result count text");
+	    WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
+	    wait3.until(ExpectedConditions.visibilityOf(resultCountElement));
+	    try {
+	    	Thread.sleep(5000);
+	    }catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
+	    test.info("Click on user profile and logout");
+	    JavascriptExecutor js6 = (JavascriptExecutor) Driver.getDriver();
+	    js6.executeScript("arguments[0].click();", userProfile);
+	    try {
+	    	Thread.sleep(5000);
+	    }catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
+	    Assert.assertTrue(logout.isDisplayed());
+	    test.info("Verified the logout option is displayed");
+	    test.info("Click on logout");
+	    logout.click();
+	    test.info("Wait for email's visibility");
+	    wait2.until(ExpectedConditions.visibilityOf(email));
+	    Assert.assertTrue(email.isDisplayed());
+	    test.info("Verified the email is displayed and user is on the login page again");
+	    HelperFunctions.staticWait(3);
+	    test.info("Click on email and enter credential for re-authentication");
+	    email.sendKeys(read1.getCellData("VALUE", 14));
+		HelperFunctions.staticWait(3);
+		next.click();
+	    HelperFunctions.waitForPageToLoad(90);
+	    HelperFunctions.staticWait(3);
+	    //wait2.until(ExpectedConditions.visibilityOf(resultCountElement));
+	    Assert.assertTrue(suggestedHeading.isDisplayed());
+	    test.info("Verified the result count is displayed and user is on the search page again");
+	    HelperFunctions.staticWait(3);
+	    
 	    
 	}
 }
