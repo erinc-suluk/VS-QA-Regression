@@ -3630,7 +3630,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    HelperFunctions.staticWait(2);
 	    done.click();
 	    try {
-	    	Thread.sleep(7000);
+	    	Thread.sleep(10000);
 	    }catch(InterruptedException e) {
 	    	e.printStackTrace();
 	    }
@@ -4057,7 +4057,7 @@ ReadXLSdata read1=new ReadXLSdata();
 	    //js7.executeScript("arguments[0].click();", pauseButton);
 	    //WebDriverWait wait4 = new WebDriverWait(Driver.getDriver(), 10);
 	   // wait4.until(ExpectedConditions.visibilityOf(volume));
-	    HelperFunctions.staticWait(3);
+	    //HelperFunctions.staticWait(3);
 	    Assert.assertTrue(volume.isDisplayed());
 	    System.out.println("volume disp");
 	    HelperFunctions.staticWait(2);

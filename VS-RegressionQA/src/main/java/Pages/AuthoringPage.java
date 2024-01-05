@@ -236,9 +236,16 @@ public class AuthoringPage extends HelperFunctions {
 		read1.setExcelFile("./testdata.xlsx", "QA");
 	    //Driver.getDriver().get(read1.getCellData("VALUE", 33));
 	  //  HelperFunctions.waitForPageToLoad(15);
+		try {
+	    	Thread.sleep(5000);
+	    }catch(InterruptedException e) {
+	    	e.printStackTrace();
+	    }
 	    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
-	    wait.until(ExpectedConditions.visibilityOf(headerEdit));
-	    headerEdit.click();
+	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+	    //wait.until(ExpectedConditions.visibilityOf(headerEdit));
+	    js.executeScript("arguments[0].click();", headerEdit);
+	    //headerEdit.click();
 	    wait.until(ExpectedConditions.visibilityOf(configure));
 	    configure.click();
 	    WebDriverWait wait1 = new WebDriverWait(Driver.getDriver(), 10);
@@ -246,8 +253,7 @@ public class AuthoringPage extends HelperFunctions {
 	    quickDescField1.click();
 	    HelperFunctions.staticWait(2);
 	    quickDescField1.clear();
-	    HelperFunctions.staticWait(3);
-	    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+	    HelperFunctions.staticWait(3); 
 	    js.executeScript("arguments[0].click();", quickDescField2);
 	    HelperFunctions.staticWait(2);
 	    quickDescField2.clear();

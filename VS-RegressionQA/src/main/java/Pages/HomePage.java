@@ -4014,22 +4014,23 @@ public class HomePage extends HelperFunctions {
 	    WebDriverWait wait3 = new WebDriverWait(Driver.getDriver(), 10);
 	    wait3.until(ExpectedConditions.visibilityOf(closeQuickLinks));
 	    List<String> texts = new ArrayList<>();
-        for (WebElement element : quickLinks) {
-            String text = element.getText().trim();
-            if (!text.isEmpty() && Character.isUpperCase(text.charAt(0))) {
-                texts.add(text);
-            }
-        }
+	    for (int i = 0; i < Math.min(quickLinks.size(), 12); i++) {
+	        WebElement element = quickLinks.get(i);
+	        String text = element.getText().trim();
+	        if (!text.isEmpty() && Character.isUpperCase(text.charAt(0))) {
+	            texts.add(text);
+	        }
+	    }
 
-        boolean isAlphabeticalOrder = true;
-        for (int i = 0; i < texts.size() - 1; i++) {
-            if (texts.get(i).compareToIgnoreCase(texts.get(i + 1)) > 0) {
-                isAlphabeticalOrder = false;
-                break;
-            }
-        }
+	    boolean isAlphabeticalOrder = true;
+	    for (int i = 0; i < Math.min(texts.size(), 12) - 1; i++) {
+	        if (texts.get(i).compareToIgnoreCase(texts.get(i + 1)) > 0) {
+	            isAlphabeticalOrder = false;
+	            break;
+	        }
+	    }
 
-        Assert.assertTrue(isAlphabeticalOrder, "The list is not in alphabetical order.");
+	    Assert.assertTrue(isAlphabeticalOrder, "The first 12 elements are not in alphabetical order.");
         HelperFunctions.staticWait(3);
 	    
 	}

@@ -2528,7 +2528,7 @@ public class RegressionTestCases extends HelperFunctions {
 
 		    try {
 		        Driver.getDriver().get(read1.getCellData("VALUE", 10));
-		        lpo.setLogin4();
+		        //lpo.setLogin4();
 		        hp.setLogoutOption(test);
 		        test.pass("WEB_69 passed");  
 		    } catch (Exception e) {
